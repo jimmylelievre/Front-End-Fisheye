@@ -1,4 +1,5 @@
 @import url("photographer.css");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 
 body {
   font-family: "DM Sans", sans-serif;
@@ -16,11 +17,22 @@ header {
 h1 {
   color: #901c1c;
   margin-right: 100px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
 }
-
+a {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
 .logo {
+  margin-top: 10px;
   height: 50px;
   margin-left: 100px;
+  cursor: pointer;
 }
 
 .photographer_section {
@@ -28,6 +40,7 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   margin-top: 100px;
+  margin-bottom: 114px;
 }
 
 .photographer_section article {
@@ -41,6 +54,35 @@ h1 {
 .photographer_section article h2 {
   color: #d3573c;
   font-size: 36px;
+  margin-bottom: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  cursor: pointer;
+}
+
+.photographer_section article h3 {
+  color: #901c1c;
+  font-size: 13px;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 13px;
+  line-height: 17px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.photographer_section article h4 {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 0;
+  margin-top: 3px;
 }
 
 .photographer_section article img {
@@ -48,4 +90,17 @@ h1 {
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.photographer_section article p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  text-align: center;
+  color: #757575;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }

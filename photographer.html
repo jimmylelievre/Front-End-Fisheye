@@ -12,13 +12,46 @@
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <div class="photographe-header">
+        <!-- <div>
+          <h1>Mimi Keel</h1>
+          <h2>London, Uk</h2>
+          <p>Voir le beau dans le quotidien</p>
+        </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <img src="/assets/photographers/MimiKeel.jpg" alt=""> -->
       </div>
+      <div class="custom-select">
+        <label class="filter" for="filter">Trier par</label>
+        <select name="filter" id="filter">
+          <option value="Popularite" selected>Popularité</option>
+          <option value="Date">Date</option>
+          <option value="Titre">Titre</option>
+          <i class="fas fa-chevron-down"></i>
+        </select>
+      </div>
+     
+
+      <section id="media" class="media">
+        <!-- <article class="card">
+          <a  href="">
+            <img src="/assets/gallery/Architecture_Cross_Bar.jpg" alt="">
+            <video src=""></video>
+          </a>
+          <div class="card-header">
+            <h2>Lonesome</h2>
+            <div class="card-header-like">
+              <span class="counter">12</span>
+              <i class="fas fa-heart"></i>
+            </div>
+          </div>
+        </article> -->
+        
+      </section>
     </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<header> 
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
@@ -31,6 +64,23 @@
 				</form>
 			</div>
 		</div>
+    <aside>
+      <div class="lightbox">
+        <button class="lightbox-next"></button>
+        <div class="lightbox-media">
+          <div class="lightbox-media-container">
+            <img src="" alt="">
+          </div>
+          <h2></h2>
+        </div>
+        <button class="lightbox-prev"></button>
+        <button class="lightbox-close"></button>
+
+      </div>
+    </aside>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
+    <script src="https://kit.fontawesome.com/e6ece1fded.js" crossorigin="anonymous"></script>
+
   </body>
 </html>

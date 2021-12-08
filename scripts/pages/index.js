@@ -1,5 +1,6 @@
 let tab = [];
 
+// Récupération des données json
 const fetchPhotographe = async () => {
   await fetch("data/photographers.json")
     .then((res) => res.json())
@@ -10,11 +11,7 @@ const fetchPhotographe = async () => {
 
 async function getPhotographers() {
   await fetchPhotographe();
-  // Penser à remplacer par les données récupérées dans le json
   const photographers = tab;
-  console.log(photographers);
-
-  // et bien retourner le tableau photographers seulement une fois
   return {
     photographers: [...photographers],
   };
@@ -37,25 +34,3 @@ async function init() {
 }
 
 init();
-
-/* const photographers = [
-  {
-    name: "data test",
-    id: 1,
-    city: "Paris",
-    country: "France",
-    tagline: "Ceci est ma data test",
-    price: 400,
-    portrait: "account.png",
-  },
-  {
-    name: "Autre data test",
-    id: 2,
-    city: "Londres",
-    country: "UK",
-    tagline: "Ceci est ma data test 2",
-    price: 500,
-    portrait: "account.png",
-  },
-];
-console.log(photographers); */
