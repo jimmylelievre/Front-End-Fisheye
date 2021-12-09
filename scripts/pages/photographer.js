@@ -1,4 +1,7 @@
-//Mettre le code JavaScript lié à la page photographer.html
+//Dom
+const header = document.querySelector(".photographe-header");
+const gallery = document.querySelector(".media");
+const likeAndPrice = document.querySelector(".likes-price");
 
 // Recuperation de la chaine de caractere dan sl'url
 const urlId = window.location.search;
@@ -21,9 +24,6 @@ const fetchPhotographe = async () => {
       console.log(mediaPhotographe);
     });
 };
-const header = document.querySelector(".photographe-header");
-const gallery = document.querySelector(".media");
-const likeAndPrice = document.querySelector(".likes-price");
 
 async function display() {
   await fetchPhotographe();
@@ -32,13 +32,13 @@ async function display() {
   console.log(mediaPhotographe.map((e) => e.image));
   console.log(dataPhotographe.name);
   header.innerHTML = `
-  <div>
-  <h1 class='titre'>${dataPhotographe.name}</h1>
-  <h2>${dataPhotographe.city}, ${dataPhotographe.country}</h2>
-  <p>${dataPhotographe.tagline}</p>
-</div>
-<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-<img src="/assets/photographers/${dataPhotographe.portrait}" alt="">
+      <div>
+        <h1 class='titre'>${dataPhotographe.name}</h1>
+        <h2>${dataPhotographe.city}, ${dataPhotographe.country}</h2>
+        <p>${dataPhotographe.tagline}</p>
+      </div>
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <img src="/assets/photographers/${dataPhotographe.portrait}" alt="">
 `;
   displayLikePrice(dataPhotographe, mediaPhotographe);
   displayGallery(mediaPhotographe);
@@ -53,7 +53,6 @@ function displayGallery(mediaPhotographe) {
     <a  href="">
       <i class="fas fa-play"></i>
       <video src="/assets/gallery/${e.video}">
-    
     </a>
     <div class="card-header">
       <h2>${e.video.replace(".mp4", " ").replace(regex, " ")}</h2>
@@ -72,7 +71,6 @@ function displayGallery(mediaPhotographe) {
     <article class="card">
     <a  href="">
     <img src="/assets/gallery/${e.image}" alt="">
-    
     </a>
     <div class="card-header">
       <h2>${e.title}</h2>
