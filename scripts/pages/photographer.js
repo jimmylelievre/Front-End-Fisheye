@@ -23,6 +23,7 @@ const fetchPhotographe = async () => {
 };
 const header = document.querySelector(".photographe-header");
 const gallery = document.querySelector(".media");
+const likeAndPrice = document.querySelector(".likes-price");
 
 async function display() {
   await fetchPhotographe();
@@ -39,21 +40,23 @@ async function display() {
 <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
 <img src="/assets/photographers/${dataPhotographe.portrait}" alt="">
 `;
-
+  displayLikePrice(dataPhotographe, mediaPhotographe);
   displayGallery(mediaPhotographe);
 }
 
 function displayGallery(mediaPhotographe) {
+  const regex = /_/gi;
   mediaPhotographe.map((e) => {
     if (e.image == undefined) {
       return (gallery.innerHTML += `
     <article class="card">
     <a  href="">
-    <video src="/assets/gallery/${e.video}">
+      <i class="fas fa-play"></i>
+      <video src="/assets/gallery/${e.video}">
     
     </a>
     <div class="card-header">
-      <h2>${e.title}</h2>
+      <h2>${e.video.replace(".mp4", " ").replace(regex, " ")}</h2>
       <div class="card-header-like">
         <span class="counter">${e.likes}</span>
         <i class="fas fa-heart"></i>
@@ -83,6 +86,27 @@ function displayGallery(mediaPhotographe) {
 
 `);
   });
+}
+
+function displayLikePrice(dataPhoto, mediaPhotographe) {
+  let likes = [];
+  // Récupearation des likes
+  mediaPhotographe.map((e) => {
+    likes.push(e.likes);
+  });
+  // Addition de tous les likes dans une variable totalLikes
+  const reducer = (acc, cur) => acc + cur;
+  totalLikes = likes.reduce(reducer);
+
+  // Injection du html avec les données du fichier json
+  return (likeAndPrice.innerHTML = `
+    <div class="likes-price-like">
+          <span class="counter">${totalLikes}</span>
+          <i class="fas fa-heart black"></i>
+    </div>
+        <p>${dataPhoto.price}€ / jour</p>
+    
+    `);
 }
 
 display();
