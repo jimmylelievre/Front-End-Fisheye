@@ -24,7 +24,7 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <img src="/assets/photographers/MimiKeel.jpg" alt=""> -->
       </div>
-      <div class="custom-select">
+     <!--  <div class="custom-select">
         <label class="filter" for="filter">Trier par</label>
         <select name="filter" id="filter">
           <option value="Popularite" selected>Popularité</option>
@@ -32,8 +32,24 @@
           <option value="Titre">Titre</option>
           <i class="fas fa-chevron-down"></i>
         </select>
-      </div>
+      </div> -->
+      <aside class="filter-container">
+        
+        <label class="filter" for="filter">Trier par</label>
+        
+        
 
+          <label class="filter-label" role="label">Popularité</label> 
+          <i class="fas fa-chevron-down chevron"></i>
+        
+        <div class="filter-wrapper" id="filter" tabindex="0" role="button" aria-activedescendant="filter-rate" aria-haspopup="listbox" aria-expanded="false" aria-owns="filter-rate filter-date filter-title">
+          <ul class="filter-listbox" role="listbox" aria-labelledby="filter-label" > 
+            <li class="filter-listbox-option border-line" role="option" id="filter-rate" aria-selected="true" data-listbox-value="rate" data-listbox-name="Popularité" data-order-by="likes">Popularité</li> 
+            <li class="filter-listbox-option border-line" role="option" id="filter-date" data-listbox-value="date" data-listbox-name="Date" data-order-by="date">Date</li> 
+            <li class="filter-listbox-option" role="option" id="filter-title" data-listbox-value="title" data-order-by="title" data-listbox-name="Titre">Titre</li> 
+          </ul>
+        </div>
+      </aside>
       <section id="media" class="media">
         <!-- <article class="card">
           <a  href="">
@@ -74,8 +90,19 @@
     </div>
     <aside class="lightbox">
       <div class="lightbox-container">
-        <img src="/assets/gallery/Architecture_Water_on_Modern.jpg" alt="">
-        <h2>Arc en ciel</h2>
+        <i class="fas fa-chevron-left"></i>
+        <div>
+          <img src="/assets/gallery/Architecture_Water_on_Modern.jpg" alt="">
+          <h2>Arc en ciel</h2>
+        </div>
+        <i class="fas fa-times"></i>
+        <div>
+
+          
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        
       </div>
     </aside>
     <script src="/scripts/utils/contactForm.js"></script>

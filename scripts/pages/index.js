@@ -1,4 +1,14 @@
 let tab = [];
+let htag = [
+  "Portrait",
+  "Art",
+  "Fashion",
+  "Architecture",
+  "Travel",
+  "Sport",
+  "Animals",
+  "Events",
+];
 
 // Récupération des données json
 const fetchPhotographe = async () => {
