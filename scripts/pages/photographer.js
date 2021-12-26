@@ -6,8 +6,11 @@ const filterButton = document.querySelector(".filter-label");
 const filterChoice = document.querySelector(".filter-wrapper");
 const selectChoices = document.querySelectorAll(".filter-listbox-option");
 const chevron = document.querySelector(".chevron");
+const lightbox = document.querySelector(".lightbox");
+const lightboxClose = document.querySelector(".fa-times");
+const lightboxImg = document.querySelector(".lightbox-img");
 
-// Recuperation de la chaine de caractere dan sl'url
+// Recuperation de la chaine de caractere dans l'url
 const urlId = window.location.search;
 
 console.log(urlId);
@@ -85,9 +88,11 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
     if (e.image == undefined) {
       gallery.innerHTML += `
     <article class="card">
-    <a  href="">
+    <a>
       <i class="fas fa-play"></i>
-      <video src="/assets/gallery/${e.video}">
+      <video id="${e.video
+        .replace(".mp4", " ")
+        .replace(regex, " ")}" class="video" src="/assets/gallery/${e.video}">
     </a>
     <div class="card-header">
       <h2>${e.video.replace(".mp4", " ").replace(regex, " ")}</h2>
@@ -101,13 +106,13 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
     } else {
       gallery.innerHTML += `
       <article class="card">
-      <a  href="">
-      <img src="/assets/gallery/${e.image}" alt="">
-      </a>
+      
+      <img class="image" src="/assets/gallery/${e.image}" alt="${e.title}">
+      
       <div class="card-header">
       <h2>${e.title}</h2>
       <div class="card-header-like">
-      <span class="counter">${e.likes} </span>
+      <span class="counter">${e.likes}</span>
       <i class="fas fa-heart likes"></i>
       </div>
       </div>
@@ -116,6 +121,38 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
       
       `;
     }
+    const img = document.querySelectorAll(".image");
+    const movie = document.querySelectorAll(".video");
+
+    img.forEach((img) => {
+      img.addEventListener("click", (e) => {
+        lightboxImg.innerHTML = `
+          <img src="${e.originalTarget.src}" alt="">
+          <h2>${e.originalTarget.alt}</h2>
+          
+          `;
+        console.log(e);
+
+        lightbox.style.display = "flex";
+      });
+    });
+    movie.forEach((video) => {
+      video.addEventListener("click", (e) => {
+        console.log(e.target.attributes.src.nodeValue);
+        lightboxImg.innerHTML = `
+            <video controls>
+            <source src="${e.target.attributes.src.nodeValue}"
+            type="video/mp4">
+            </video>
+            <h2>${e.target.id}</h2>
+
+            
+            
+            
+            `;
+        lightbox.style.display = "flex";
+      });
+    });
   });
 }
 function onLike(e) {
@@ -182,4 +219,9 @@ filterChoice.addEventListener("click", (e) => {
   filterButton.innerText = e.target.innerText;
   chevron.classList.remove("fa-chevron-up");
   chevron.classList.add("fa-chevron-down");
+});
+
+// Evenement modal lightbox
+lightboxClose.addEventListener("click", () => {
+  lightbox.style.display = "none";
 });
