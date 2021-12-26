@@ -9,6 +9,8 @@ const chevron = document.querySelector(".chevron");
 const lightbox = document.querySelector(".lightbox");
 const lightboxClose = document.querySelector(".fa-times");
 const lightboxImg = document.querySelector(".lightbox-img");
+const lightboxBtnPrev = document.querySelector(".fa-chevron-left");
+const lightboxBtnNext = document.querySelector(".fa-chevron-right");
 
 // Recuperation de la chaine de caractere dans l'url
 const urlId = window.location.search;
@@ -21,7 +23,7 @@ console.log(id);
 
 // Récupération des données json
 
-const fetchPhotographe = async () => {
+const fetchPhotographePage = async () => {
   return await fetch("data/photographers.json")
     .then((res) => res.json())
     .then((data) => {
@@ -37,7 +39,7 @@ const fetchPhotographe = async () => {
 };
 
 async function init() {
-  let { dataPhotographe, mediaPhotographe } = await fetchPhotographe();
+  let { dataPhotographe, mediaPhotographe } = await fetchPhotographePage();
 
   console.log(mediaPhotographe.map((e) => e.image));
   console.log(dataPhotographe.name);
@@ -59,6 +61,72 @@ async function init() {
       console.log(choice);
       displayGallery(mediaPhotographe, choice);
     });
+  });
+
+  const regex = /_/gi;
+
+  let i = 0;
+  lightboxBtnNext.addEventListener("click", () => {
+    i = i + 1;
+    im = mediaPhotographe.map((e) => e.image);
+    v = mediaPhotographe.map((e) => e.video);
+    title = mediaPhotographe.map((e) => e.title);
+
+    console.log(im[i]);
+    lightboxImg.innerHTML = `
+          <img src="/assets/gallery/${im[i]}"  alt="">
+          <h2>${title[i]}</h2>
+
+          `;
+    if (i == im.length) {
+      i = 0;
+    }
+    if (im[i] == undefined) {
+      lightboxImg.innerHTML = `
+            <video controls>
+            <source src="/assets/gallery/${v[i]}"
+            type="video/mp4">
+            </video>
+          <h2>${v[i].replace(".mp4", " ").replace(regex, " ")}</h2>
+           
+            `;
+    }
+    if (i < 0) {
+      i++;
+    }
+    console.log(i);
+  });
+
+  lightboxBtnPrev.addEventListener("click", () => {
+    i = i - 1;
+    im = mediaPhotographe.map((e) => e.image);
+    v = mediaPhotographe.map((e) => e.video);
+    title = mediaPhotographe.map((e) => e.title);
+
+    console.log(im[i]);
+    lightboxImg.innerHTML = `
+          <img src="/assets/gallery/${im[i]}"  alt="">
+          <h2>${title[i]}</h2>
+          `;
+
+    if (im[i] == undefined) {
+      lightboxImg.innerHTML = `
+            <video controls>
+            <source src="/assets/gallery/${v[0]}"
+            type="video/mp4">
+            </video>
+          <h2>${v[0].replace(".mp4", " ").replace(regex, " ")}</h2>
+           
+            `;
+    }
+    if (i < 0) {
+      i = im.length - 1;
+      lightboxImg.innerHTML = `
+      <img src="/assets/gallery/${im[i]}"  alt="">
+      <h2>${title[i]}</h2>
+      `;
+    }
+    console.log(i);
   });
 }
 init();
@@ -83,6 +151,7 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
     likes: sortByLikes,
   };
   let sortBy = sortFunctions[orderBy];
+  let i = 0;
 
   mediaPhotographe.sort(sortBy).map((e) => {
     if (e.image == undefined) {
@@ -92,7 +161,9 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
       <i class="fas fa-play"></i>
       <video id="${e.video
         .replace(".mp4", " ")
-        .replace(regex, " ")}" class="video" src="/assets/gallery/${e.video}">
+        .replace(regex, " ")}" class="video" src="/assets/gallery/${
+        e.video
+      }"></video>
     </a>
     <div class="card-header">
       <h2>${e.video.replace(".mp4", " ").replace(regex, " ")}</h2>
@@ -107,7 +178,9 @@ function displayGallery(mediaPhotographe, orderBy = "likes") {
       gallery.innerHTML += `
       <article class="card">
       
-      <img class="image" src="/assets/gallery/${e.image}" alt="${e.title}">
+      <img id="${i++}" class="image" src="/assets/gallery/${e.image}" alt="${
+        e.title
+      }">
       
       <div class="card-header">
       <h2>${e.title}</h2>
