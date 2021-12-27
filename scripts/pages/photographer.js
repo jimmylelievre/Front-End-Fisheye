@@ -80,6 +80,11 @@ async function init() {
           `;
     if (i == im.length) {
       i = 0;
+      lightboxImg.innerHTML = `
+          <img src="/assets/gallery/${im[i]}"  alt="">
+          <h2>${title[i]}</h2>
+
+          `;
     }
     if (im[i] == undefined) {
       lightboxImg.innerHTML = `
@@ -91,9 +96,7 @@ async function init() {
            
             `;
     }
-    if (i < 0) {
-      i++;
-    }
+
     console.log(i);
   });
 
@@ -103,7 +106,7 @@ async function init() {
     v = mediaPhotographe.map((e) => e.video);
     title = mediaPhotographe.map((e) => e.title);
 
-    console.log(im[i]);
+    console.log(v);
     lightboxImg.innerHTML = `
           <img src="/assets/gallery/${im[i]}"  alt="">
           <h2>${title[i]}</h2>
@@ -112,10 +115,10 @@ async function init() {
     if (im[i] == undefined) {
       lightboxImg.innerHTML = `
             <video controls>
-            <source src="/assets/gallery/${v[0]}"
+            <source src="/assets/gallery/${v[6]}"
             type="video/mp4">
             </video>
-          <h2>${v[0].replace(".mp4", " ").replace(regex, " ")}</h2>
+          <h2>${v[6].replace(".mp4", " ").replace(regex, " ")}</h2>
            
             `;
     }

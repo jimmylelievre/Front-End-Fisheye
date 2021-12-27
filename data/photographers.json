@@ -7,7 +7,8 @@
 			"country": "UK",
 			"tagline": "Voir le beau dans le quotidien",
 			"price": 400,
-			"portrait": "MimiKeel.jpg"
+			"portrait": "MimiKeel.jpg",
+			"alt": "Portrait de Mimi Keel"
 		},
 		{
 			"name": "Ellie-Rose Wilkens",
@@ -16,7 +17,9 @@
 			"country": "France",
 			"tagline": "Capturer des compositions complexes",
 			"price": 250,
-			"portrait": "EllieRoseWilkens.jpg"
+			"portrait": "EllieRoseWilkens.jpg",
+			"alt": "Portrait de Ellie-Rose wilkens"
+
 		},
 		{
 			"name": "Tracy Galindo",
@@ -25,7 +28,9 @@
 			"country": "Canada",
 			"tagline": "Photographe freelance",
 			"price": 500,
-			"portrait": "TracyGalindo.jpg"
+			"portrait": "TracyGalindo.jpg",
+			"alt": "Portrait de Tracy Galindo"
+
 		},
 		{
 			"name": "Nabeel Bradford",
@@ -34,7 +39,9 @@
 			"country": "Mexico",
 			"tagline": "Toujours aller de l'avant",
 			"price": 350,
-			"portrait": "NabeelBradford.jpg"
+			"portrait": "NabeelBradford.jpg",
+			"alt": "Portrait de Nabeel Bradford"
+			
 		},
 		{
 			"name": "Rhode Dubois",
@@ -43,7 +50,8 @@
 			"country": "Spain",
 			"tagline": "Je crée des souvenirs",
 			"price": 275,
-			"portrait": "RhodeDubois.jpg"
+			"portrait": "RhodeDubois.jpg",
+			"alt": "Portrait de Rhode Dubois"
 		},
 		{
 			"name": "Marcel Nikolic",
@@ -52,7 +60,8 @@
 			"country": "Germany",
 			"tagline": "Toujours à la recherche de LA photo",
 			"price": 300,
-			"portrait": "MarcelNikolic.jpg"
+			"portrait": "MarcelNikolic.jpg",
+			"alt": "Portrait de Marcel Nikolic"
 		}
 	],
 	"media": [
@@ -63,7 +72,9 @@
 			"image": "Fashion_Yellow_Beach.jpg",
 			"likes": 62,
 			"date": "2011-12-08",
-			"price": 55
+			"price": 55,
+			"alt": "Femme en tenue jaune"
+
 		},
 		{
 			"id": 8520927,
@@ -72,7 +83,8 @@
 			"image": "Fashion_Urban_Jungle.jpg",
 			"likes": 11,
 			"date": "2011-11-06",
-			"price": 55
+			"price": 55,
+			"alt": "Femme en tenue florale"
 		},
 		{
 			"id": 9025895,
@@ -81,7 +93,8 @@
 			"image": "Fashion_Pattern_on_Pattern.jpg",
 			"likes": 72,
 			"date": "2013-08-12",
-			"price": 55
+			"price": 55,
+			"alt": "Femme en tenue rayé "
 		},
 		{
 			"id": 9275938,
@@ -90,7 +103,8 @@
 			"image": "Event_WeddingGazebo.jpg",
 			"likes": 69,
 			"date": "2018-02-22",
-			"price": 55
+			"price": 55,
+			"alt": "Pavillon de mariage fleurie"
 		},
 		{
 			"id": 2053494,
@@ -99,7 +113,8 @@
 			"image": "Event_Sparklers.jpg",
 			"likes": 2,
 			"date": "2020-05-25",
-			"price": 55
+			"price": 55,
+			"alt": "couple de mariée régardant la salle de fête"
 		},
 		{
 			"id": 7324238,
@@ -108,7 +123,8 @@
 			"image": "Event_18thAnniversary.jpg",
 			"likes": 33,
 			"date": "2019-06-12",
-			"price": 55
+			"price": 55,
+			"alt": "vue d'une salle de fête pour un 18e anniversaire"
 		},
 		{
 			"id": 8328953,
@@ -116,7 +132,8 @@
 			"video": "Art_Wooden_Horse_Sculpture.mp4",
 			"likes": 24,
 			"date": "2011-12-08",
-			"price": 100
+			"price": 100,
+			"alt": "video d'une sculpture d'un cheval en bois"
 		  },
 		{
 			"id": 7502053,
@@ -125,7 +142,8 @@
 			"image": "Art_Triangle_Man.jpg",
 			"likes": 88,
 			"date": "2007-05-07",
-			"price": 55
+			"price": 55,
+			"alt": "photo d'un art abstrait d'un homme"
 		},
 		{
 			"id": 8523492,
@@ -134,7 +152,8 @@
 			"image": "Art_Purple_light.jpg",
 			"likes": 24,
 			"date": "2018-05-05",
-			"price": 55
+			"price": 55,
+			"alt": "un tunnel passage piétons avec graphity"
 		},
 		{
 			"id": 75902334,
@@ -143,7 +162,8 @@
 			"image": "Art_Mine.jpg",
 			"likes": 75,
 			"date": "2019-11-25",
-			"price": 55
+			"price": 55,
+			"alt": "photo d'un art abstrait avec des oiseaux"
 		},
 
 		{
@@ -153,7 +173,8 @@
 			"image": "Sport_2000_with_8.jpg",
 			"likes": 52,
 			"date": "2013-02-30",
-			"price": 70
+			"price": 70,
+			"alt": "personnes en canoé en train de ramer"
 		},
 		{
 			"id": 92758372,
@@ -162,7 +183,8 @@
 			"image": "Fashion_Wings.jpg",
 			"likes": 58,
 			"date": "2018-07-17",
-			"price": 70
+			"price": 70,
+			"alt": "photo d'un couple"
 		},
 		{
 			"id": 32958383,
@@ -171,7 +193,8 @@
 			"image": "Fashion_Melody_Red_on_Stripes.jpg",
 			"likes": 11,
 			"date": "2019-08-12",
-			"price": 70
+			"price": 70,
+			"alt": "femme en robe rouge"
 		},
 		{
 			"id": 928587383,
@@ -180,7 +203,8 @@
 			"image": "Event_VentureConference.jpg",
 			"likes": 2,
 			"date": "2019-01-02",
-			"price": 70
+			"price": 70,
+			"alt": "personnes en réunion"
 		},
 		{
 			"id": 725639493,
@@ -189,7 +213,8 @@
 			"image": "Event_ProductPitch.jpg",
 			"likes": 3,
 			"date": "2019-05-20",
-			"price": 70
+			"price": 70,
+			"alt": "personnes en train de faire une présentation"
 		},
 		{
 			"id": 23394384,
@@ -198,7 +223,8 @@
 			"image": "Event_KeyboardCheck.jpg",
 			"likes": 52,
 			"date": "2019-07-18",
-			"price": 70
+			"price": 70,
+			"alt": "personne en train de jouer du keyboard à un festival"
 		},
 		{
 			"id": 87367293,
@@ -207,7 +233,8 @@
 			"image": "Event_Emcee.jpg",
 			"likes": 23,
 			"date": "2018-02-22",
-			"price": 70
+			"price": 70,
+			"alt": "personne en train de chanter à un festival"
 		},
 		{
 			"id": 593834784,
@@ -216,7 +243,8 @@
 			"image": "Animals_Majesty.jpg",
 			"likes": 52,
 			"date": "2017-03-13",
-			"price": 70
+			"price": 70,
+			"alt": "portrait d'un cerf"
 		},
 		{
 			"id": 83958935,
@@ -224,7 +252,8 @@
 			"video": "Animals_Puppiness.mp4",
 			"likes": 52,
 			"date": "2016-06-12",
-			"price": 70
+			"price": 70,
+			"alt": "video d'un chiot à la mer lors d'un coucher de soleil"
 		},
 		{
 			"id": 394583434,
@@ -232,7 +261,8 @@
 			"video": "Travel_Rock_Mountains.mp4",
 			"likes": 23,
 			"date": "2017-03-18",
-			"price": 45
+			"price": 45,
+			"alt": "video des Rock Mountains"
 		},
 		{
 			"id": 343423425,
@@ -241,7 +271,8 @@
 			"image": "Travel_Outdoor_Baths.jpg",
 			"likes": 101,
 			"date": "2017-04-03",
-			"price": 45
+			"price": 45,
+			"alt": "Bain dans une grande source chaude"
 		},
 		{
 			"id": 73434243,
@@ -250,7 +281,8 @@
 			"image": "Travel_Road_into_Hill.jpg",
 			"likes": 99,
 			"date": "2018-04-30",
-			"price": 45
+			"price": 45,
+			"alt": "routes à travers de collines"
 		},
 		{
 			"id": 23425523,
@@ -259,7 +291,8 @@
 			"image": "Travel_Bridge_into_Forest.jpg",
 			"likes": 34,
 			"date": "2016-04-05",
-			"price": 45
+			"price": 45,
+			"alt": "Pont traversant une forêt"
 		},
 		{
 			"id": 23134513,
@@ -268,7 +301,8 @@
 			"image": "Travel_Boat_Wanderer.jpg",
 			"likes": 23,
 			"date": "2017-03-18",
-			"price": 45
+			"price": 45,
+			"alt": "vue d'un bateau sur un lac vers les montagnes"
 		},
 		{
 			"id": 92352352,
@@ -277,7 +311,8 @@
 			"image": "Portrait_Sunkissed.jpg",
 			"likes": 66,
 			"date": "2018-05-24",
-			"price": 45
+			"price": 45,
+			"alt": "portrait d'une femme rousse"
 		},
 		{
 			"id": 34513453,
@@ -286,7 +321,8 @@
 			"image": "Portrait_Shaw.jpg",
 			"likes": 52,
 			"date": "2017-04-21",
-			"price": 45
+			"price": 45,
+			"alt": "potrait d'un homme en noir et blanc"
 		},
 		{
 			"id": 23523533,
@@ -295,7 +331,8 @@
 			"image": "Portrait_Alexandra.jpg",
 			"likes": 95,
 			"date": "2018-11-02",
-			"price": 45
+			"price": 45,
+			"alt": "portrait d'une femme afroaméricaine"
 		},
 		{
 			"id": 525834234,
@@ -304,7 +341,8 @@
 			"image": "Portrait_AfternoonBreak.jpg",
 			"likes": 25,
 			"date": "2019-01-02",
-			"price": 45
+			"price": 45,
+			"alt": "portrai tun homme agé"
 		},
 
 		{
@@ -314,7 +352,8 @@
 			"image": "Travel_Lonesome.jpg",
 			"likes": 88,
 			"date": "2019-02-03",
-			"price": 45
+			"price": 45,
+			"alt": "vue sur des collines ensoleillées"
 		},
 		{
 			"id": 625025343,
@@ -323,7 +362,8 @@
 			"image": "Travel_HillsideColor.jpg",
 			"likes": 85,
 			"date": "2019-04-03",
-			"price": 45
+			"price": 45,
+			"alt": "village coloré au bord de mer sur une colline"
 		},
 		{
 			"id": 2525345343,
@@ -332,7 +372,8 @@
 			"image": "Portrait_Wednesday.jpg",
 			"likes": 34,
 			"date": "2019-04-07",
-			"price": 45
+			"price": 45,
+			"alt": "portrait noir et blanc d'une fille"
 		},
 		{
 			"id": 2523434634,
@@ -341,7 +382,8 @@
 			"image": "Portrait_Nora.jpg",
 			"likes": 63,
 			"date": "2019-04-07",
-			"price": 45
+			"price": 45,
+			"alt": "femme afroaméricaine avec lunette"
 		},
 		{
 			"id": 398847109,
@@ -350,7 +392,8 @@
 			"image": "Portrait_Background.jpg",
 			"likes": 55,
 			"date": "2019-06-20",
-			"price": 45
+			"price": 45,
+			"alt": "portrait femme en pull noir"
 		},
 		{
 			"id": 2534342,
@@ -359,7 +402,8 @@
 			"image": "Event_SeasideWedding.jpg",
 			"likes": 25,
 			"date": "2019-06-21",
-			"price": 45
+			"price": 45,
+			"alt": "table dresser avec des serviettes rouges pour un mariage "
 		},
 		{
 			"id": 65235234,
@@ -368,7 +412,8 @@
 			"image": "Event_PintoWedding.jpg",
 			"likes": 52,
 			"date": "2019-06-25",
-			"price": 45
+			"price": 45,
+			"alt": "couple de mariée enlacer posant entre des rochers"
 		},
 		{
 			"id": 23523434,
@@ -377,7 +422,8 @@
 			"image": "Event_BenevidesWedding.jpg",
 			"likes": 77,
 			"date": "2019-06-28",
-			"price": 45
+			"price": 45,
+			"alt": "couple de mariée posant sur le chemin de l'autel en exterieur"
 		},
 		{
 			"id": 5234343,
@@ -385,7 +431,8 @@
 			"video": "Animals_Wild_Horses_in_the_mountains.mp4",
 			"likes": 142,
 			"date": "2019-08-23",
-			"price": 60
+			"price": 60,
+			"alt": "viedeo de cheveaux dans les montagnes"
 		  },
 		{
 			"id": 95234343,
@@ -394,7 +441,8 @@
 			"image": "Animals_Rainbow.jpg",
 			"likes": 59,
 			"date": "2019-07-02",
-			"price": 60
+			"price": 60,
+			"alt": "petite oiseau coloré"
 		},
 
 		{
@@ -404,7 +452,8 @@
 			"image": "Travel_Tower.jpg",
 			"likes": 25,
 			"date": "2019-04-03",
-			"price": 60
+			"price": 60,
+			"alt": "vue sur une tour Japonaise"
 		},
 		{
 			"id": 2523434,
@@ -413,7 +462,8 @@
 			"image": "Travel_SunsetonCanals.jpg",
 			"likes": 53,
 			"date": "2019-05-06",
-			"price": 60
+			"price": 60,
+			"alt": "canal de venice"
 		},
 		{
 			"id": 95293534,
@@ -422,7 +472,8 @@
 			"image": "Travel_OpenMountain.jpg",
 			"likes": 33,
 			"date": "2019-05-12",
-			"price": 60
+			"price": 60,
+			"alt": "vue d'un lac entre montagne"
 		},
 		{
 			"id": 356234343,
@@ -431,7 +482,8 @@
 			"image": "Travel_Bike_and_Stair.jpg",
 			"likes": 53,
 			"date": "2019-06-20",
-			"price": 60
+			"price": 60,
+			"alt": "vélo dans les rues de Paris"
 		},
 		{
 			"id": 235234343,
@@ -440,7 +492,8 @@
 			"image": "Travel_Adventure_Door.jpg",
 			"likes": 63,
 			"date": "2019-06-26",
-			"price": 60
+			"price": 60,
+			"alt": "Vue sur un paysage au travers d'une porte indienne"
 		},
 		{
 			"id": 6234234343,
@@ -449,7 +502,8 @@
 			"image": "Architecture_Contrast.jpg",
 			"likes": 52,
 			"date": "2019-06-30",
-			"price": 60
+			"price": 60,
+			"alt": "vue sur le toit d'un batiment de St Petersburg"
 		},
 		{
 			"id": 6525666253,
@@ -458,7 +512,8 @@
 			"image": "Architecture_On_a_hill.jpg",
 			"likes": 63,
 			"date": "2019-07-20",
-			"price": 60
+			"price": 60,
+			"alt": "village sur une colline au Tibet"
 		},
 		{
 			"id": 98252523433,
@@ -467,7 +522,8 @@
 			"image": "Architecture_Dome.jpg",
 			"likes": 88,
 			"date": "2020-01-05",
-			"price": 60
+			"price": 60,
+			"alt": "Tour de Pise vue d'en bas"
 		},
 		{
 			"id": 9259398453,
@@ -475,7 +531,8 @@
 			"video": "Architecture_coverr_circle_empty_highway_in_buenos_aires_587740985637.mp4",
 			"likes": 57,
 			"date": "2020-01-20",
-			"price": 65
+			"price": 65,
+			"alt": "video d'un échangeur d'autoroute au Buenos Aires"
 		  },
 		{
 			"id": 3523523534,
@@ -484,7 +541,8 @@
 			"image": "Architecture_Corner_Room.jpg",
 			"likes": 54,
 			"date": "2020-05-05",
-			"price": 60
+			"price": 60,
+			"alt": "immeuble de coin et ciel bleu"
 		},
 		{
 			"id": 952343423,
@@ -492,7 +550,8 @@
 			"video": "Sport_Tricks_in_the_air.mp4",
 			"likes": 150,
 			"date": "2018-02-30",
-			"price": 70
+			"price": 70,
+			"alt": "video d'une femme faisant de l'athlétisme"
 		  },
 		{
 			"id": 235234343,
@@ -501,7 +560,8 @@
 			"image": "Sport_Next_Hold.jpg",
 			"likes": 101,
 			"date": "2018-03-05",
-			"price": 65
+			"price": 65,
+			"alt": "personne qui escalade"
 		},
 		{
 			"id": 235343222,
@@ -510,7 +570,8 @@
 			"image": "sport_water_tunnel.jpg",
 			"likes": 103,
 			"date": "2018-03-10",
-			"price": 70
+			"price": 70,
+			"alt": "personne qui surfe"
 		},
 		{
 			"id": 7775342343,
@@ -519,7 +580,8 @@
 			"image": "Sport_Sky_Cross.jpg",
 			"likes": 77,
 			"date": "2018-04-16",
-			"price": 50
+			"price": 50,
+			"alt": "personne qui ski"
 		},
 		{
 			"id": 9253445784,
@@ -528,7 +590,8 @@
 			"image": "Sport_Race_End.jpg",
 			"likes": 88,
 			"date": "2018-04-22",
-			"price": 65
+			"price": 65,
+			"alt": "personnes qui font une course"
 		},
 		{
 			"id": 22299394,
@@ -537,7 +600,8 @@
 			"image": "Sport_Jump.jpg",
 			"likes": 95,
 			"date": "2018-04-27",
-			"price": 70
+			"price": 70,
+			"alt": "personnes qui font su skate"
 		},
 		{
 			"id": 3452342633,
@@ -546,7 +610,8 @@
 			"image": "Architecture_White_Light.jpg",
 			"likes": 52,
 			"date": "2018-05-03",
-			"price": 75
+			"price": 75,
+			"alt": "vue d'en bas de l'interieur d'un immeuble toute en blanc"
 		},
 		{
 			"id": 939234243,
@@ -555,7 +620,8 @@
 			"image": "Architecture_Water_on_Modern.jpg",
 			"likes": 55,
 			"date": "2018-05-10",
-			"price": 72
+			"price": 72,
+			"alt": "eau sur un immeuble en forme de wage"
 		},
 		{
 			"id": 222959233,
@@ -564,7 +630,8 @@
 			"image": "Architecture_Horseshoe.jpg",
 			"likes": 85,
 			"date": "2018-05-15",
-			"price": 71
+			"price": 71,
+			"alt": "vue d'en bas d'un immeuble"
 		},
 		{
 			"id": 965933434,
@@ -573,7 +640,8 @@
 			"image": "Architecture_Cross_Bar.jpg",
 			"likes": 66,
 			"date": "2018-05-20",
-			"price": 58
+			"price": 58,
+			"alt": "vue d'en bas d'un immeuble"
 		},
 		{
 			"id": 777723343,
@@ -582,7 +650,8 @@
 			"image": "Architecture_Connected_Curves.jpg",
 			"likes": 79,
 			"date": "2018-05-21",
-			"price": 80
+			"price": 80,
+			"alt": "vue d'en bas d'un immeuble"
 		}
 	]
 }
