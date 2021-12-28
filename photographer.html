@@ -24,7 +24,7 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <img src="/assets/photographers/MimiKeel.jpg" alt=""> -->
       </div>
-     <!--  <div class="custom-select">
+      <!--  <div class="custom-select">
         <label class="filter" for="filter">Trier par</label>
         <select name="filter" id="filter">
           <option value="Popularite" selected>Popularité</option>
@@ -34,19 +34,57 @@
         </select>
       </div> -->
       <aside class="filter-container">
-        
         <label class="filter" for="filter">Trier par</label>
-        
-        
 
-          <label class="filter-label" role="label">Popularité</label> 
-          <i class="fas fa-chevron-down chevron"></i>
-        
-        <div class="filter-wrapper" id="filter" tabindex="0" role="button" aria-activedescendant="filter-rate" aria-haspopup="listbox" aria-expanded="false" aria-owns="filter-rate filter-date filter-title">
-          <ul class="filter-listbox" role="listbox" aria-labelledby="filter-label" > 
-            <li class="filter-listbox-option border-line" role="option" id="filter-rate" aria-selected="true" data-listbox-value="rate" data-listbox-name="Popularité" data-order-by="likes">Popularité</li> 
-            <li class="filter-listbox-option border-line" role="option" id="filter-date" data-listbox-value="date" data-listbox-name="Date" data-order-by="date">Date</li> 
-            <li class="filter-listbox-option" role="option" id="filter-title" data-listbox-value="title" data-order-by="title" data-listbox-name="Titre">Titre</li> 
+        <label class="filter-label" role="label">Popularité</label>
+        <i class="fas fa-chevron-down chevron"></i>
+
+        <div
+          class="filter-wrapper"
+          id="filter"
+          tabindex="0"
+          role="button"
+          aria-activedescendant="filter-rate"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-owns="filter-rate filter-date filter-title"
+        >
+          <ul
+            class="filter-listbox"
+            role="listbox"
+            aria-labelledby="filter-label"
+          >
+            <li
+              class="filter-listbox-option border-line"
+              role="option"
+              id="filter-rate"
+              aria-selected="true"
+              data-listbox-value="rate"
+              data-listbox-name="Popularité"
+              data-order-by="likes"
+            >
+              Popularité
+            </li>
+            <li
+              class="filter-listbox-option border-line"
+              role="option"
+              id="filter-date"
+              data-listbox-value="date"
+              data-listbox-name="Date"
+              data-order-by="date"
+            >
+              Date
+            </li>
+            <li
+              class="filter-listbox-option"
+              role="option"
+              id="filter-title"
+              data-listbox-value="title"
+              data-order-by="title"
+              data-listbox-name="Titre"
+            >
+              Titre
+            </li>
           </ul>
         </div>
       </aside>
@@ -78,37 +116,38 @@
     <div id="contact_modal">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
+          <h2 class="contact-h2"></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="firstname">Prénom</label>
+            <input type="text" name="firstname"/>
+            <label for="lastname">Nom</label>
+            <input type="text" name="lastname" />
+            <label for="email">Email</label>
+            <input type="text" name="email" />
+            <label for="message">Votre message</label>
+            <textarea name="message" id="" ></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
     </div>
-    
+
     <!-- Modal lightbox -->
     <aside class="lightbox">
       <div class="lightbox-container">
         <i class="fas fa-chevron-left"></i>
         <div class="lightbox-img">
-          <img  src="/assets/gallery/Architecture_Water_on_Modern.jpg" alt="">
-          
+          <img src="/assets/gallery/Architecture_Water_on_Modern.jpg" alt="" />
 
           <h2>Arc en ciel</h2>
         </div>
         <i class="fas fa-times"></i>
         <div>
-
-          
           <i class="fas fa-chevron-right"></i>
         </div>
-        
-        
       </div>
     </aside>
     <script src="/scripts/utils/contactForm.js"></script>
