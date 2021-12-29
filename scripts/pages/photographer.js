@@ -67,7 +67,6 @@ async function init () {
   })
 
   let i = 0
-  btnNext(i, mediaPhotographe)
 
   lightboxBtnPrev.addEventListener('click', () => {
     i -= 1
@@ -168,6 +167,7 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       
       `
     }
+
     const img = document.querySelectorAll('.image')
     const movie = document.querySelectorAll('.video')
 
@@ -177,12 +177,13 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         lightboxImg.innerHTML = `
           <img src="${e.originalTarget.src}" alt="">
           <h2>${e.originalTarget.alt}</h2>
-          
-          
           `
         console.log(e)
-
+        i = parseInt(e.target.id) + 1
         lightbox.style.display = 'flex'
+        btnNext(i, mediaPhotographe)
+
+
       })
     })
     movie.forEach((video) => {
@@ -193,16 +194,13 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
             <source src="${e.target.attributes.src.nodeValue}"
             type="video/mp4">
             </video>
-            <h2>${e.target.id}</h2>
-
-            
-            
-            
+            <h2>${e.target.id}</h2>           
             `
         lightbox.style.display = 'flex'
       })
     })
   })
+
 }
 function onLike (e) {
   const counterLikes = document.querySelectorAll('.likes')
@@ -264,7 +262,7 @@ lightboxClose.addEventListener('click', () => {
   lightbox.style.display = 'none'
 })
 
-function btnNext (i, mediaPhotographe) {
+/* function btnNext (i, mediaPhotographe) {
   const regex = /_/gi
 
   lightboxBtnNext.addEventListener('click', () => {
@@ -297,6 +295,35 @@ function btnNext (i, mediaPhotographe) {
            
             `
     }
+
+    console.log(i)
+  })
+} */
+
+function btnNext (i, mediaPhotographe) {
+  const regex = /_/gi
+
+  lightboxBtnNext.addEventListener('click', () => {
+    i += 1
+    im = mediaPhotographe.map((e) => e.image)
+    v = mediaPhotographe.map((e) => e.video)
+    title = mediaPhotographe.map((e) => e.title)
+
+    console.log(im[i])
+    lightboxImg.innerHTML = `
+          <img src="/assets/gallery/${im[i]}"  alt="">
+          <h2>${title[i]}</h2>
+
+          `
+    if (i == im.length) {
+      i = 0
+      lightboxImg.innerHTML = `
+          <img src="/assets/gallery/${im[i]}"  alt="">
+          <h2>${title[i]}</h2>
+
+          `
+    }
+    
 
     console.log(i)
   })
