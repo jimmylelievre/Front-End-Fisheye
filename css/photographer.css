@@ -178,6 +178,9 @@ option {
   text-align: right;
   color: #911c1c;
 }
+.likes {
+  cursor: pointer;
+}
 .fa-heart {
   color: #911c1c;
   font-size: 20px;

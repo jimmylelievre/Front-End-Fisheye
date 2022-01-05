@@ -105,8 +105,8 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     <div class="card-header">
       <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
       <div class="card-header-like">
-        <span class="counter">${e.likes}</span>
-        <i class="fas fa-heart likes"></i>
+        <span id='${e.likes}' class="counter">${e.likes}</span>
+        <i id='${e.likes}' class="fas fa-heart likes"></i>
       </div>
     </div>
     </article>
@@ -122,15 +122,14 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       <div class="card-header">
       <h2>${e.title}</h2>
       <div class="card-header-like">
-      <span class="counter">${e.likes}</span>
-      <i class="fas fa-heart likes"></i>
+      <span id='${e.likes}' class="counter">${e.likes}</span>
+      <i id='${e.likes}' class="fas fa-heart likes"></i>
       </div>
       </div>
       </article>
-      
-      
       `
     }
+    onLike(e)
 
     const img = document.querySelectorAll('.image')
     const movie = document.querySelectorAll('.video')
@@ -144,12 +143,12 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
           `
         i = parseInt(e.target.id)
         lightbox.style.display = 'flex'
+
         btnNext(i, mediaPhotographe)
         btnPrev(i, mediaPhotographe)
-
-        console.log(i)
       })
     })
+
     movie.forEach((video) => {
       video.addEventListener('click', (e) => {
         console.log(e.target.attributes.src.nodeValue)
@@ -173,23 +172,40 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     lightboxClose.addEventListener('click', () => {
       lightbox.style.display = 'none'
     })
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none'
+      }
+    })
   })
 }
 function onLike (e) {
   const counterLikes = document.querySelectorAll('.likes')
   const counter = document.querySelectorAll('.counter')
+  const counterTotal = document.querySelectorAll('.counter-total')
+  console.log(counterTotal[0])
+  counterTotal.forEach(el => {
+    console.log(el)
+  })
 
   let counterLikeClick = 0
 
-  counterLikes.forEach((buttonLike) => {
-    buttonLike.addEventListener('click', () => {
-      if (counterLikeClick == 0) {
-        counter.innerHTML = ' '
-        counterLikeClick += 1
-      } else {
-        counterLikeClick -= 1
-      }
-      console.log(counterLikeClick)
+  counterLikes.forEach(like => {
+    like.addEventListener('click', (e) => {
+      console.log(e.target.id)
+      counter.forEach(count => {
+        if (e.target.id === count.id) {
+          if (counterLikeClick === 0) {
+            counterLikeClick += 1
+            count.textContent++
+            counterTotal[0].textContent++
+          } else {
+            counterLikeClick -= 1
+            count.textContent--
+            counterTotal[0].textContent--
+          }
+        }
+      })
     })
   })
 }
@@ -207,7 +223,7 @@ function displayLikePrice (dataPhoto, mediaPhotographe) {
   // Injection du html avec les données du fichier json
   return (likeAndPrice.innerHTML = `
     <div class="likes-price-like">
-          <span class="counter">${totalLikes}</span>
+          <span class="counter-total">${totalLikes}</span>
           <i class="fas fa-heart black"></i>
     </div>
         <p>${dataPhoto.price}€ / jour</p>
@@ -231,74 +247,72 @@ filterChoice.addEventListener('click', (e) => {
 })
 
 function btnNext (i, mediaPhotographe) {
-  const regex = /_/gi
-
+  const im = mediaPhotographe.map((e) => e.image)
   lightboxBtnNext.addEventListener('click', () => {
     i += 1
-    const im = mediaPhotographe.map((e) => e.image)
-    const v = mediaPhotographe.map((e) => e.video)
-    const title = mediaPhotographe.map((e) => e.title)
 
-    lightboxImg.innerHTML = `
-          <img src="/assets/gallery/${im[i]}"  alt="">
-          <h2>${title[i]}</h2>
-
-          `
     if (i == im.length) {
       i = 0
-      lightboxImg.innerHTML = `
-          <img src="/assets/gallery/${im[i]}"  alt="">
-          <h2>${title[i]}</h2>
-
-          `
-    }
-    if (im[i] == undefined) {
-      lightboxImg.innerHTML = `
-            <video controls>
-            <source src="/assets/gallery/${v[i]}"
-            type="video/mp4">
-            </video>
-          <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
-
-            `
     }
 
-    console.log(i)
-
+    displayNextPrevPicture(i, mediaPhotographe)
     btnPrev(i, mediaPhotographe)
+  })
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      i += 1
+      if (i == im.length) {
+        i = 0
+      }
+
+      displayNextPrevPicture(i, mediaPhotographe)
+    }
   })
 }
 
 function btnPrev (i, mediaPhotographe) {
-  const regex = /_/gi
-
+  const im = mediaPhotographe.map((e) => e.image)
   lightboxBtnPrev.addEventListener('click', () => {
     i -= 1
-    const im = mediaPhotographe.map((e) => e.image)
-    const v = mediaPhotographe.map((e) => e.video)
-    const title = mediaPhotographe.map((e) => e.title)
-
     if (i < 0) {
       i = im.length - 1
     }
-
-    console.log(v)
-    lightboxImg.innerHTML = `
-          <img src="/assets/gallery/${im[i]}"  alt="">
-          <h2>${title[i]}</h2>
-          `
-
-    if (im[i] == undefined) {
-      lightboxImg.innerHTML = `
-      <video controls>
-      <source src="/assets/gallery/${v[i]}"
-      type="video/mp4">
-      </video>
-    <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
-
-      `
-    }
+    displayNextPrevPicture(i, mediaPhotographe)
     btnNext(i, mediaPhotographe)
     console.log(i)
   })
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      i -= 1
+      if (i < 0) {
+        i = im.length - 1
+      }
+
+      displayNextPrevPicture(i, mediaPhotographe)
+    }
+  })
+}
+
+function displayNextPrevPicture (i, mediaPhotographe) {
+  const regex = /_/gi
+
+  const im = mediaPhotographe.map((e) => e.image)
+  const v = mediaPhotographe.map((e) => e.video)
+  const title = mediaPhotographe.map((e) => e.title)
+
+  lightboxImg.innerHTML = `
+        <img src="/assets/gallery/${im[i]}"  alt="">
+        <h2>${title[i]}</h2>
+        `
+
+  if (im[i] == undefined) {
+    lightboxImg.innerHTML = `
+    <video controls>
+    <source src="/assets/gallery/${v[i]}"
+    type="video/mp4">
+    </video>
+  <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
+
+    `
+  }
 }
