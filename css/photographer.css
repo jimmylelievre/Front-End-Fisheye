@@ -33,6 +33,7 @@
 #filter {
   margin-left: 25px;
 }
+
 /* select {
   background-color: #901c1c;
   border-radius: 5px;
@@ -48,7 +49,7 @@
 option {
   border-radius: 10px;
   border: 1px solid white;
-}  */
+} */
 .filter-container {
   display: flex;
 }
@@ -66,8 +67,7 @@ option {
   width: 170px;
   height: 170px;
 }
-.filter-wrapper ul {
-  padding-right: 10px;
+li {
   padding-left: 10px;
 }
 .filter-label {
@@ -85,6 +85,23 @@ option {
   font-size: 18px;
   cursor: pointer;
 }
+.filter-label:hover {
+  background-color: #db8876;
+  color: black;
+}
+.filter-label:focus {
+  background-color: #db8876;
+  color: black;
+}
+.filter-listbox-option:hover {
+  background-color: #db8876;
+  color: black;
+}
+.filter-listbox-option:focus {
+  background-color: #db8876;
+  color: black;
+}
+
 .fa-chevron-down {
   color: white;
   position: absolute;
@@ -105,8 +122,28 @@ option {
   padding-top: 16px;
   cursor: pointer;
 }
-.border-line {
-  border-bottom: solid 1px white;
+.filter-listbox {
+  position: relative;
+}
+
+#filter-rate::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  padding-bottom: 37px;
+
+  height: 1px;
+  width: 90%;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+#filter-date::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  padding-bottom: 37px;
+  height: 1px;
+  width: 90%;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 /* --- Gallery ---  */
@@ -217,7 +254,7 @@ option {
   text-align: right;
   color: black;
 }
-/* --- Modal ---  */
+/* --- Modal contact ---  */
 
 .contact_button {
   font-size: 20px;
@@ -231,14 +268,27 @@ option {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  line-height: 23px;
+}
+.contact_button:hover {
+  background-color: #db8876;
+  color: black;
+}
+.contact_button:focus {
+  background-color: #db8876;
+  color: black;
 }
 #contact_modal {
   position: fixed;
-  top: 69px;
+  top: 0;
+  bottom: 0;
   width: 100vw;
   z-index: 22;
+  background-color: rgba(255, 255, 255, 0.475);
 }
 .modal {
+  position: relative;
+  top: 68px;
   border-radius: 5px;
   background-color: #db8876;
   width: 669px;

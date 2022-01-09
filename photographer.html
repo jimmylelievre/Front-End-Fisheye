@@ -12,7 +12,9 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html">
+        <img src="assets/images/logo.png" class="logo" aria-label="logo du site Fisheye"  />
+      </a>
     </header>
     <main id="main">
       <div class="photographe-header">
@@ -33,10 +35,11 @@
           <i class="fas fa-chevron-down"></i>
         </select>
       </div> -->
-      <aside class="filter-container">
-        <label class="filter" for="filter">Trier par</label>
 
-        <label class="filter-label" role="label">Popularité</label>
+      <aside  class="filter-container">
+        <label  class="filter" for="filter">Trier par</label>
+
+        <label  tabindex="0" class="filter-label" role="button">Popularité</label>
         <i class="fas fa-chevron-down chevron"></i>
 
         <div
@@ -88,6 +91,15 @@
           </ul>
         </div>
       </aside>
+
+     <!--  <label  class="filter" for="filter">Trier par</label>
+      <select class="select-filter" name="filter" id="filter">
+        <option value="Populaire">Populaire</option>
+        <option value="Date">Date</option>
+        <option value="Titre">Titre</option>
+        
+    </select> -->
+
       <section id="media" class="media">
         <!-- <article class="card">
           <a  href="">
@@ -113,36 +125,34 @@
     </main>
 
     <!-- Modal contact -->
-    <div id="contact_modal">
+    <aside id="contact_modal" role="dialog" aria-labelledby="modal-contact-title" aria-modal="true">
       <div class="modal">
         <header>
           <h2 class="contact-h2"></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" aria-label="Close modal" onclick="closeModal()" />
         </header>
         <form>
           <div>
             <label for="firstname">Prénom</label>
-            <input type="text" name="firstname" />
+            <input type="text" data-error="Le nom doit contenir au minimum 2 caractères" name="firstname" minlength="2" title="Le prénom doit contenir au minimum 2 caractères" required="" />
             <label for="lastname">Nom</label>
-            <input type="text" name="lastname" />
+            <input type="text" name="lastname" minlength="2" title="Le nom doit contenir au minimum 2 caractères" required="" />
             <label for="email">Email</label>
-            <input type="text" name="email" />
+            <input type="text" name="email" data-error="L'adresse e-mail doit être valide" title="L'adresse e-mail doit être valide" required=""/>
             <label for="message">Votre message</label>
-            <textarea name="message" id=""></textarea>
+            <textarea name="message" id="message" type="text" minlength="5" title="Le message doit contenir au minimum 5 caractères" required=""></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
-    </div>
+    </aside>
 
     <!-- Modal lightbox -->
     <aside class="lightbox">
       <div class="lightbox-container">
         <i class="fas fa-chevron-left"></i>
         <div class="lightbox-img">
-          <img src="/assets/gallery/Architecture_Water_on_Modern.jpg" alt="" />
-
-          <h2>Arc en ciel</h2>
+          
         </div>
         <i class="fas fa-times"></i>
         <div>

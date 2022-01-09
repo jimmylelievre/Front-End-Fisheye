@@ -1,6 +1,7 @@
 // Dom
 
 const header = document.querySelector('.photographe-header')
+const main = document.querySelector('main')
 const gallery = document.querySelector('.media')
 const likeAndPrice = document.querySelector('.likes-price')
 const filterButton = document.querySelector('.filter-label')
@@ -45,13 +46,13 @@ async function init () {
   console.log(mediaPhotographe.map((e) => e.image))
   console.log(dataPhotographe.name)
   header.innerHTML = `
-      <div>
-        <h1 class='titre'>${dataPhotographe.name}</h1>
-        <h2>${dataPhotographe.city}, ${dataPhotographe.country}</h2>
-        <p>${dataPhotographe.tagline}</p>
+      <div tabindex='1' >
+        <h1 tabindex='1' class='titre'>${dataPhotographe.name}</h1>
+        <h2 tabindex='1' >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
+        <p tabindex='1' >${dataPhotographe.tagline}</p>
       </div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <img src="/assets/photographers/${dataPhotographe.portrait}" alt="">
+      <img tabindex='2' src="/assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
   displayLikePrice(dataPhotographe, mediaPhotographe)
   displayGallery(mediaPhotographe)
@@ -105,7 +106,7 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     <div class="card-header">
       <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
       <div class="card-header-like">
-        <span id='${e.likes}' class="counter">${e.likes}</span>
+        <span tabindex='0' aria-label="${e.likes} nombres de j'aime"   id='${e.likes}' class="counter">${e.likes}</span>
         <i id='${e.likes}' class="fas fa-heart likes"></i>
       </div>
     </div>
@@ -115,32 +116,41 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       gallery.innerHTML += `
       <article class="card">
       
-      <img id="${i++}" class="image" src="/assets/gallery/${e.image}" alt="${
-        e.title
+      <img id="${i++}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
+        e.alt
       }">
       
       <div class="card-header">
       <h2>${e.title}</h2>
       <div class="card-header-like">
-      <span id='${e.likes}' class="counter">${e.likes}</span>
-      <i id='${e.likes}' class="fas fa-heart likes"></i>
+        <span tabindex='0' aria-label="${e.likes} nombres de j'aime" id='${e.likes}' class="counter">${e.likes}</span>
+        <i id='${e.likes}' class="fas fa-heart likes"></i>
       </div>
       </div>
       </article>
       `
     }
-    onLike(e)
+    onLike()
 
     const img = document.querySelectorAll('.image')
     const movie = document.querySelectorAll('.video')
 
     img.forEach((image) => {
+      image.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          lightbox.style.display = 'flex'
+          main.setAttribute('aria-hidden', 'true')
+          header.setAttribute('aria-hidden', 'true')
+        }
+      })
       image.addEventListener('click', (e) => {
-        // Récuperer l'id dans img et mettre la fonction next(id)
+        main.setAttribute('aria-hidden', 'true')
+        header.setAttribute('aria-hidden', 'true')
         lightboxImg.innerHTML = `
-          <img src="${e.originalTarget.src}" alt="">
-          <h2>${e.originalTarget.alt}</h2>
+          <img src="${e.originalTarget.src}" alt="${e.originalTarget.alt}">
+          <h2>${e.target.dataset.titre}</h2>
           `
+
         i = parseInt(e.target.id)
         lightbox.style.display = 'flex'
 
@@ -150,8 +160,27 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     })
 
     movie.forEach((video) => {
+      video.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          lightboxImg.innerHTML = `
+          <video controls>
+          <source src="${e.target.attributes.src.nodeValue}"
+          type="video/mp4">
+          </video>
+          <h2>${e.target.dataset.titre}</h2>           
+          `
+          lightbox.style.display = 'flex'
+          i = parseInt(e.target.id)
+
+          btnNext(i, mediaPhotographe)
+          btnPrev(i, mediaPhotographe)
+          main.setAttribute('aria-hidden', 'true')
+          header.setAttribute('aria-hidden', 'true')
+        }
+      })
       video.addEventListener('click', (e) => {
-        console.log(e.target.attributes.src.nodeValue)
+        main.setAttribute('aria-hidden', 'true')
+        header.setAttribute('aria-hidden', 'true')
         lightboxImg.innerHTML = `
             <video controls>
             <source src="${e.target.attributes.src.nodeValue}"
@@ -171,28 +200,27 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     // Evenement modal lightbox
     lightboxClose.addEventListener('click', () => {
       lightbox.style.display = 'none'
+      main.setAttribute('aria-hidden', 'false')
+      header.setAttribute('aria-hidden', 'false')
     })
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         lightbox.style.display = 'none'
+        main.setAttribute('aria-hidden', 'false')
+        header.setAttribute('aria-hidden', 'false')
       }
     })
   })
 }
-function onLike (e) {
+function onLike () {
   const counterLikes = document.querySelectorAll('.likes')
   const counter = document.querySelectorAll('.counter')
   const counterTotal = document.querySelectorAll('.counter-total')
-  console.log(counterTotal[0])
-  counterTotal.forEach(el => {
-    console.log(el)
-  })
 
   let counterLikeClick = 0
 
   counterLikes.forEach(like => {
     like.addEventListener('click', (e) => {
-      console.log(e.target.id)
       counter.forEach(count => {
         if (e.target.id === count.id) {
           if (counterLikeClick === 0) {
@@ -204,6 +232,9 @@ function onLike (e) {
             count.textContent--
             counterTotal[0].textContent--
           }
+          /* count.textContent++
+          counterTotal[0].textContent++
+          e.target.id++ */
         }
       })
     })
@@ -230,7 +261,7 @@ function displayLikePrice (dataPhoto, mediaPhotographe) {
     
     `)
 }
-
+// Filtre photo
 filterButton.addEventListener('click', () => {
   filterChoice.style.display = 'block'
   filterButton.style.display = 'none'
@@ -244,6 +275,19 @@ filterChoice.addEventListener('click', (e) => {
   filterButton.innerText = e.target.innerText.trim()
   chevron.classList.remove('fa-chevron-up')
   chevron.classList.add('fa-chevron-down')
+})
+filterButton.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    filterChoice.style.display = 'block'
+    filterButton.style.display = 'none'
+    chevron.classList.remove('fa-chevron-down')
+    chevron.classList.add('fa-chevron-up')
+  }
+})
+filterChoice.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') {
+    filterChoice.setAttribute('aria-activedescendant', 'filter-date')
+  }
 })
 
 function btnNext (i, mediaPhotographe) {
@@ -299,9 +343,10 @@ function displayNextPrevPicture (i, mediaPhotographe) {
   const im = mediaPhotographe.map((e) => e.image)
   const v = mediaPhotographe.map((e) => e.video)
   const title = mediaPhotographe.map((e) => e.title)
+  const alt = mediaPhotographe.map((e) => e.alt)
 
   lightboxImg.innerHTML = `
-        <img src="/assets/gallery/${im[i]}"  alt="">
+        <img src="/assets/gallery/${im[i]}"  alt="${alt[i]}">
         <h2>${title[i]}</h2>
         `
 

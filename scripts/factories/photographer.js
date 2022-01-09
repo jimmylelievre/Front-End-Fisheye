@@ -1,30 +1,35 @@
-function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
+function photographerFactory (data) {
+  const { name, portrait, city, country, tagline, price, id } = data
 
-  const picture = `assets/photographers/${portrait}`;
-  const lienPhotographer = ` photographer.html?${id}`;
+  const picture = `assets/photographers/${portrait}`
+  const lienPhotographer = ` photographer.html?${id}`
 
-  function getUserCardDOM() {
-    const article = document.createElement("article");
+  function getUserCardDOM () {
+    const article = document.createElement('article')
 
-    const a = document.createElement("a");
-    a.innerHTML = `<img src="assets/photographers/${portrait}"/> <h2>${name}</h2> `;
-    a.setAttribute("href", lienPhotographer);
+    const a = document.createElement('a')
+    a.innerHTML = `<img tabindex='1' src="assets/photographers/${portrait}"/> <h2 tabindex='1' >${name}</h2> `
+    a.setAttribute('href', lienPhotographer)
 
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    const h3 = document.createElement("h3");
-    h3.textContent = `${city}, ${country}`;
-    const h4 = document.createElement("h4");
-    h4.innerHTML = `${tagline}`;
-    const p = document.createElement("p");
-    p.innerHTML = `${price}€/jour`;
-    article.appendChild(a);
-    article.appendChild(h3);
-    article.appendChild(h4);
-    article.appendChild(p);
+    const h3 = document.createElement('h3')
+    h3.textContent = `${city}, ${country}`
+    h3.setAttribute('tabindex', 1)
 
-    return article;
+    const h4 = document.createElement('h4')
+    h4.innerHTML = `${tagline}`
+    h4.setAttribute('tabindex', 1)
+
+    const p = document.createElement('p')
+    p.innerHTML = `${price}€/jour`
+    p.setAttribute('tabindex', 1)
+
+    article.appendChild(a)
+
+    article.appendChild(h3)
+    article.appendChild(h4)
+    article.appendChild(p)
+
+    return article
   }
-  return { name, picture, getUserCardDOM };
+  return { name, picture, getUserCardDOM }
 }
