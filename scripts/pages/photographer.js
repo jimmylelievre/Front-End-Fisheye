@@ -14,6 +14,8 @@ const lightboxImg = document.querySelector('.lightbox-img')
 const lightboxBtnPrev = document.querySelector('.fa-chevron-left')
 const lightboxBtnNext = document.querySelector('.fa-chevron-right')
 
+let likedMedia = []
+
 const modalH2 = document.querySelector('.modal header h2')
 console.log(modalH2)
 
@@ -31,8 +33,8 @@ const fetchPhotographePage = async () =>
     .then((data) => {
       // trouver l'id de data egale a l'id de l'url
 
-      const dataPhotographe = data.photographers.find((e) => e.id == id)
-      const mediaPhotographe = data.media.filter((e) => e.photographerId == id)
+      const dataPhotographe = data.photographers.find((e) => e.id === parseInt(id))
+      const mediaPhotographe = data.media.filter((e) => e.photographerId === parseInt(id))
       console.log(dataPhotographe)
       return {
         dataPhotographe,
@@ -69,6 +71,54 @@ async function init () {
 }
 init()
 
+function createMediaCard (e, i) {
+  console.log('===')
+  console.log(e)
+
+  const regex = /_/gi
+  let htmlElement = ''
+  if (!('image' in e)) {
+    htmlElement = `
+  <article class="card">
+  <a>
+    <i class="fas fa-play"></i>
+    <video id="${i}" data-titre="${e.video
+      .replace('.mp4', ' ')
+      .replace(regex, ' ')}" class="video" src="/assets/gallery/${
+      e.video
+    }"></video>
+  </a>
+  <div class="card-header">
+    <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
+    <div class="card-header-like">
+      <span tabindex='0' aria-label="${e.likes} nombres de j'aime"   id='${e.likes}' class="counter">${e.likes}</span>
+      <i id='${e.likes}' class="fas fa-heart likes"></i>
+    </div>
+  </div>
+  </article>
+`
+  } else {
+    htmlElement = `
+    <article class="card">
+    
+    <img id="${i}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
+      e.alt
+    }">
+    
+    <div class="card-header">
+    <h2>${e.title}</h2>
+    <div class="card-header-like">
+      <span tabindex='0' aria-label="${e.likes} nombres de j'aime" id='${e.likes}' class="counter">${e.likes}</span>
+      <i id='${e.likes}' class="fas fa-heart likes"></i>
+    </div>
+    </div>
+    </article>
+    `
+  }
+
+  return htmlElement
+}
+
 function sortByTitle (a, b) {
   return a.title > b.title ? 1 : -1
 }
@@ -89,47 +139,11 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     likes: sortByLikes
   }
   const sortBy = sortFunctions[orderBy]
-  let i = 0
+  /* let i = 0 */
 
-  mediaPhotographe.sort(sortBy).map((e) => {
-    if (e.image == undefined) {
-      gallery.innerHTML += `
-    <article class="card">
-    <a>
-      <i class="fas fa-play"></i>
-      <video id="${i++}" data-titre="${e.video
-        .replace('.mp4', ' ')
-        .replace(regex, ' ')}" class="video" src="/assets/gallery/${
-        e.video
-      }"></video>
-    </a>
-    <div class="card-header">
-      <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
-      <div class="card-header-like">
-        <span tabindex='0' aria-label="${e.likes} nombres de j'aime"   id='${e.likes}' class="counter">${e.likes}</span>
-        <i id='${e.likes}' class="fas fa-heart likes"></i>
-      </div>
-    </div>
-    </article>
-`
-    } else {
-      gallery.innerHTML += `
-      <article class="card">
-      
-      <img id="${i++}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
-        e.alt
-      }">
-      
-      <div class="card-header">
-      <h2>${e.title}</h2>
-      <div class="card-header-like">
-        <span tabindex='0' aria-label="${e.likes} nombres de j'aime" id='${e.likes}' class="counter">${e.likes}</span>
-        <i id='${e.likes}' class="fas fa-heart likes"></i>
-      </div>
-      </div>
-      </article>
-      `
-    }
+  mediaPhotographe.sort(sortBy).forEach((e, i) => {
+    gallery.innerHTML += createMediaCard(e, i)
+
     onLike()
 
     const img = document.querySelectorAll('.image')
@@ -217,24 +231,21 @@ function onLike () {
   const counter = document.querySelectorAll('.counter')
   const counterTotal = document.querySelectorAll('.counter-total')
 
-  let counterLikeClick = 0
-
   counterLikes.forEach(like => {
     like.addEventListener('click', (e) => {
       counter.forEach(count => {
+        const target = likedMedia.find((element) => element === e.target.id)
         if (e.target.id === count.id) {
-          if (counterLikeClick === 0) {
-            counterLikeClick += 1
+          if (!target) {
             count.textContent++
             counterTotal[0].textContent++
+            likedMedia.push(e.target.id)
           } else {
-            counterLikeClick -= 1
+            likedMedia = likedMedia.filter((element) => element !== e.target.id)
+
             count.textContent--
             counterTotal[0].textContent--
           }
-          /* count.textContent++
-          counterTotal[0].textContent++
-          e.target.id++ */
         }
       })
     })
