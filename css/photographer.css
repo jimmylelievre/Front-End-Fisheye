@@ -50,22 +50,6 @@ header {
   margin-left: 25px;
 }
 
-/* select {
-  background-color: #901c1c;
-  border-radius: 5px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 18px;
-  padding: 23px;
-  color: white;
-  text-decoration: none;
-  border: none;
-}
-option {
-  border-radius: 10px;
-  border: 1px solid white;
-} */
 .filter-container {
   display: flex;
   position: relative;

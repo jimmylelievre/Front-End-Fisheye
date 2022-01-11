@@ -153,8 +153,10 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       image.addEventListener('click', (e) => {
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
+        console.log(e)
+
         lightboxImg.innerHTML = `
-          <img src="${e.originalTarget.src}" alt="${e.originalTarget.alt}">
+          <img src="${e.target.attributes[3].nodeValue}" alt="${e.target.alt}">
           <h2>${e.target.dataset.titre}</h2>
           `
 
@@ -350,10 +352,12 @@ function displayNextPrevPicture (i, mediaPhotographe) {
   const title = mediaPhotographe.map((e) => e.title)
   const alt = mediaPhotographe.map((e) => e.alt)
 
-  lightboxImg.innerHTML = `
+  if (im[i]) {
+    lightboxImg.innerHTML = `
         <img src="/assets/gallery/${im[i]}"  alt="${alt[i]}">
         <h2>${title[i]}</h2>
         `
+  }
 
   if (im[i] === undefined) {
     lightboxImg.innerHTML = `
