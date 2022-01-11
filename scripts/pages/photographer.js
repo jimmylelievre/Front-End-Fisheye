@@ -17,7 +17,6 @@ const lightboxBtnNext = document.querySelector('.fa-chevron-right')
 let likedMedia = []
 
 const modalH2 = document.querySelector('.modal header h2')
-console.log(modalH2)
 
 // Recuperation de la chaine de caractere dans l'url
 const urlId = window.location.search
@@ -35,7 +34,7 @@ const fetchPhotographePage = async () =>
 
       const dataPhotographe = data.photographers.find((e) => e.id === parseInt(id))
       const mediaPhotographe = data.media.filter((e) => e.photographerId === parseInt(id))
-      console.log(dataPhotographe)
+
       return {
         dataPhotographe,
         mediaPhotographe
@@ -45,8 +44,6 @@ const fetchPhotographePage = async () =>
 async function init () {
   const { dataPhotographe, mediaPhotographe } = await fetchPhotographePage()
 
-  console.log(mediaPhotographe.map((e) => e.image))
-  console.log(dataPhotographe.name)
   header.innerHTML = `
       <div tabindex='1' >
         <h1 tabindex='1' class='titre'>${dataPhotographe.name}</h1>
@@ -64,7 +61,7 @@ async function init () {
   selectChoices.forEach((selectChoice) => {
     selectChoice.addEventListener('click', (e) => {
       const choice = e.currentTarget.dataset.orderBy
-      console.log(choice)
+
       displayGallery(mediaPhotographe, choice)
     })
   })
@@ -72,9 +69,6 @@ async function init () {
 init()
 
 function createMediaCard (e, i) {
-  console.log('===')
-  console.log(e)
-
   const regex = /_/gi
   let htmlElement = ''
   if (!('image' in e)) {
@@ -84,7 +78,7 @@ function createMediaCard (e, i) {
     <i class="fas fa-play"></i>
     <video id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
-      .replace(regex, ' ')}" class="video" src="/assets/gallery/${
+      .replace(regex, ' ')}" class="video" alt="${e.alt}" src="/assets/gallery/${
       e.video
     }"></video>
   </a>
@@ -130,7 +124,6 @@ function sortByLikes (a, b) {
 }
 
 function displayGallery (mediaPhotographe, orderBy = 'likes') {
-  const regex = /_/gi
   gallery.innerHTML = ''
 
   const sortFunctions = {
@@ -255,7 +248,7 @@ function onLike () {
 function displayLikePrice (dataPhoto, mediaPhotographe) {
   const likes = []
   // Récupearation des likes
-  mediaPhotographe.map((e) => {
+  mediaPhotographe.forEach((e) => {
     likes.push(e.likes)
   })
   // Addition de tous les likes dans une variable totalLikes
@@ -306,7 +299,7 @@ function btnNext (i, mediaPhotographe) {
   lightboxBtnNext.addEventListener('click', () => {
     i += 1
 
-    if (i == im.length) {
+    if (i === im.length) {
       i = 0
     }
 
@@ -316,11 +309,12 @@ function btnNext (i, mediaPhotographe) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') {
       i += 1
-      if (i == im.length) {
+      if (i === im.length) {
         i = 0
       }
 
       displayNextPrevPicture(i, mediaPhotographe)
+      btnPrev(i, mediaPhotographe)
     }
   })
 }
@@ -334,7 +328,6 @@ function btnPrev (i, mediaPhotographe) {
     }
     displayNextPrevPicture(i, mediaPhotographe)
     btnNext(i, mediaPhotographe)
-    console.log(i)
   })
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -344,6 +337,7 @@ function btnPrev (i, mediaPhotographe) {
       }
 
       displayNextPrevPicture(i, mediaPhotographe)
+      btnNext(i, mediaPhotographe)
     }
   })
 }
@@ -361,7 +355,7 @@ function displayNextPrevPicture (i, mediaPhotographe) {
         <h2>${title[i]}</h2>
         `
 
-  if (im[i] == undefined) {
+  if (im[i] === undefined) {
     lightboxImg.innerHTML = `
     <video controls>
     <source src="/assets/gallery/${v[i]}"
