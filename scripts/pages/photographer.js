@@ -46,11 +46,11 @@ async function init () {
 
   header.innerHTML = `
       <div tabindex='1' >
-        <h1 tabindex='1' class='titre'>${dataPhotographe.name}</h1>
-        <h2 tabindex='1' >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
-        <p tabindex='1' >${dataPhotographe.tagline}</p>
+        <h1 tabindex='1' aria-label="Le nom du photographe est ${dataPhotographe.name}" class='titre'>${dataPhotographe.name}</h1>
+        <h2 tabindex='1' aria-label="La ville du photographe est ${dataPhotographe.city} en ${dataPhotographe.country}" >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
+        <p tabindex='1' aria-label="Le slogan du photographe est ${dataPhotographe.tagline}" >${dataPhotographe.tagline}</p>
       </div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button aria-label"button ouvrir le formulaire de contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       <img tabindex='2' src="/assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
   displayLikePrice(dataPhotographe, mediaPhotographe)
@@ -78,7 +78,7 @@ function createMediaCard (e, i) {
     <i class="fas fa-play"></i>
     <video id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
-      .replace(regex, ' ')}" class="video" alt="${e.alt}" src="/assets/gallery/${
+      .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="/assets/gallery/${
       e.video
     }"></video>
   </a>
@@ -124,6 +124,8 @@ function sortByLikes (a, b) {
 }
 
 function displayGallery (mediaPhotographe, orderBy = 'likes') {
+  const regex = /_/gi
+
   gallery.innerHTML = ''
 
   const sortFunctions = {
@@ -173,7 +175,7 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         if (e.key === 'Enter') {
           lightboxImg.innerHTML = `
           <video controls>
-          <source src="${e.target.attributes.src.nodeValue}"
+          <source aria-label="${e.target.dataset.titre}" src="${e.target.attributes.src.nodeValue}"
           type="video/mp4">
           </video>
           <h2>${e.target.dataset.titre}</h2>           
@@ -188,12 +190,13 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         }
       })
       video.addEventListener('click', (e) => {
+        console.log(e)
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
         lightboxImg.innerHTML = `
             <video controls>
-            <source src="${e.target.attributes.src.nodeValue}"
-            type="video/mp4">
+              <source aria-label="${e.target.dataset.titre}" src="${e.target.attributes.src.nodeValue}"
+              type="video/mp4">
             </video>
             <h2>${e.target.dataset.titre}</h2>           
             `
@@ -362,7 +365,7 @@ function displayNextPrevPicture (i, mediaPhotographe) {
   if (im[i] === undefined) {
     lightboxImg.innerHTML = `
     <video controls>
-    <source src="/assets/gallery/${v[i]}"
+    <source aria-label="${v[i].replace('.mp4', ' ').replace(regex, ' ')}" src="/assets/gallery/${v[i]}"
     type="video/mp4">
     </video>
   <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
