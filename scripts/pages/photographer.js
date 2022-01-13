@@ -325,7 +325,7 @@ function btnPrev (i, mediaPhotographe) {
   })
 }
 
-// Creation des cartes photos ou video en fonction du click suivant ou precedent
+// Creation des cartes photos ou videos en fonction du click suivant ou precedent
 function displayNextPrevPicture (i, mediaPhotographe) {
   const regex = /_/gi
 
