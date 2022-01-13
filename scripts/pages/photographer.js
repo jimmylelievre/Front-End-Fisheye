@@ -78,9 +78,11 @@ function createMediaCard (e, i) {
     <i class="fas fa-play"></i>
     <video id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
-      .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="/assets/gallery/${
-      e.video
-    }"></video>
+      .replace(regex, ' ')}" class="video" aria-label="${e.alt}">
+    <source src="/assets/gallery/${
+      e.video}"
+          type="video/mp4">
+    </video>
   </a>
   <div class="card-header">
     <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
@@ -124,8 +126,6 @@ function sortByLikes (a, b) {
 }
 
 function displayGallery (mediaPhotographe, orderBy = 'likes') {
-  const regex = /_/gi
-
   gallery.innerHTML = ''
 
   const sortFunctions = {
