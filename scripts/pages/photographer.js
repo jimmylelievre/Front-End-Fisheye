@@ -78,10 +78,9 @@ function createMediaCard (e, i) {
     <i class="fas fa-play"></i>
     <video id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
-      .replace(regex, ' ')}" class="video" aria-label="${e.alt}">
-    <source src="/assets/gallery/${
-      e.video}"
-          type="video/mp4">
+      .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="/assets/gallery/${
+      e.video
+    }">
     </video>
   </a>
   <div class="card-header">
