@@ -13,10 +13,9 @@ const lightboxClose = document.querySelector('.fa-times')
 const lightboxImg = document.querySelector('.lightbox-img')
 const lightboxBtnPrev = document.querySelector('.fa-chevron-left')
 const lightboxBtnNext = document.querySelector('.fa-chevron-right')
+const modalH2 = document.querySelector('.modal header h2')
 
 let likedMedia = []
-
-const modalH2 = document.querySelector('.modal header h2')
 
 // Recuperation de la chaine de caractere dans l'url
 const urlId = window.location.search
@@ -68,6 +67,7 @@ async function init () {
 }
 init()
 
+// Création de cartes da la gallery
 function createMediaCard (e, i) {
   const regex = /_/gi
   let htmlElement = ''
@@ -114,6 +114,7 @@ function createMediaCard (e, i) {
   return htmlElement
 }
 
+// Trie des photos et video par titre, date et j'aime
 function sortByTitle (a, b) {
   return a.title > b.title ? 1 : -1
 }
@@ -124,6 +125,7 @@ function sortByLikes (a, b) {
   return b.likes - a.likes
 }
 
+// Affichage de la gallery
 function displayGallery (mediaPhotographe, orderBy = 'likes') {
   gallery.innerHTML = ''
 
@@ -133,16 +135,17 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     likes: sortByLikes
   }
   const sortBy = sortFunctions[orderBy]
-  /* let i = 0 */
 
   mediaPhotographe.sort(sortBy).forEach((e, i) => {
     gallery.innerHTML += createMediaCard(e, i)
 
+    // Systeme de like
     onLike()
 
     const img = document.querySelectorAll('.image')
     const movie = document.querySelectorAll('.video')
 
+    //  Apparition de la lightbox en fonction du clic sur une image ou video
     img.forEach((image) => {
       image.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -154,7 +157,6 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       image.addEventListener('click', (e) => {
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
-        console.log(e)
 
         lightboxImg.innerHTML = `
           <img src="${e.target.attributes[3].nodeValue}" alt="${e.target.alt}">
@@ -208,7 +210,7 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
       })
     })
 
-    // Evenement modal lightbox
+    // Fermeture de la lightbox au clic sur le bouton croix ou avec echape
     lightboxClose.addEventListener('click', () => {
       lightbox.style.display = 'none'
       main.setAttribute('aria-hidden', 'false')
@@ -223,6 +225,8 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
     })
   })
 }
+
+// Systeme de like, Ajout des likes au click
 function onLike () {
   const counterLikes = document.querySelectorAll('.likes')
   const counter = document.querySelectorAll('.counter')
@@ -249,6 +253,7 @@ function onLike () {
   })
 }
 
+// Affichage de l'encart de la totalité des likes
 function displayLikePrice (dataPhoto, mediaPhotographe) {
   const likes = []
   // Récupearation des likes
@@ -269,7 +274,86 @@ function displayLikePrice (dataPhoto, mediaPhotographe) {
     
     `)
 }
-// Filtre photo
+
+// Bouton suivant de la lightbox
+function btnNext (i, mediaPhotographe) {
+  const im = mediaPhotographe.map((e) => e.image)
+  lightboxBtnNext.addEventListener('click', () => {
+    i += 1
+
+    if (i === im.length) {
+      i = 0
+    }
+
+    displayNextPrevPicture(i, mediaPhotographe)
+    btnPrev(i, mediaPhotographe)
+  })
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      i += 1
+      if (i === im.length) {
+        i = 0
+      }
+
+      displayNextPrevPicture(i, mediaPhotographe)
+      btnPrev(i, mediaPhotographe)
+    }
+  })
+}
+
+// Bouton precedent de la lightbox
+function btnPrev (i, mediaPhotographe) {
+  const im = mediaPhotographe.map((e) => e.image)
+  lightboxBtnPrev.addEventListener('click', () => {
+    i -= 1
+    if (i < 0) {
+      i = im.length - 1
+    }
+    displayNextPrevPicture(i, mediaPhotographe)
+    btnNext(i, mediaPhotographe)
+  })
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      i -= 1
+      if (i < 0) {
+        i = im.length - 1
+      }
+
+      displayNextPrevPicture(i, mediaPhotographe)
+      btnNext(i, mediaPhotographe)
+    }
+  })
+}
+
+// Creation des cartes photos ou video en fonction du click suivant ou precedent
+function displayNextPrevPicture (i, mediaPhotographe) {
+  const regex = /_/gi
+
+  const im = mediaPhotographe.map((e) => e.image)
+  const v = mediaPhotographe.map((e) => e.video)
+  const title = mediaPhotographe.map((e) => e.title)
+  const alt = mediaPhotographe.map((e) => e.alt)
+
+  if (im[i]) {
+    lightboxImg.innerHTML = `
+        <img src="/assets/gallery/${im[i]}"  alt="${alt[i]}">
+        <h2>${title[i]}</h2>
+        `
+  }
+
+  if (im[i] === undefined) {
+    lightboxImg.innerHTML = `
+    <video controls>
+    <source aria-label="${v[i].replace('.mp4', ' ').replace(regex, ' ')}" src="/assets/gallery/${v[i]}"
+    type="video/mp4">
+    </video>
+  <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
+
+    `
+  }
+}
+
+// Evenements sur le bouton filtre par date, like ou titre
 filterButton.addEventListener('click', () => {
   filterChoice.style.display = 'block'
   filterButton.style.display = 'none'
@@ -297,78 +381,3 @@ filterChoice.addEventListener('keydown', (e) => {
     filterChoice.setAttribute('aria-activedescendant', 'filter-date')
   }
 })
-
-function btnNext (i, mediaPhotographe) {
-  const im = mediaPhotographe.map((e) => e.image)
-  lightboxBtnNext.addEventListener('click', () => {
-    i += 1
-
-    if (i === im.length) {
-      i = 0
-    }
-
-    displayNextPrevPicture(i, mediaPhotographe)
-    btnPrev(i, mediaPhotographe)
-  })
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      i += 1
-      if (i === im.length) {
-        i = 0
-      }
-
-      displayNextPrevPicture(i, mediaPhotographe)
-      btnPrev(i, mediaPhotographe)
-    }
-  })
-}
-
-function btnPrev (i, mediaPhotographe) {
-  const im = mediaPhotographe.map((e) => e.image)
-  lightboxBtnPrev.addEventListener('click', () => {
-    i -= 1
-    if (i < 0) {
-      i = im.length - 1
-    }
-    displayNextPrevPicture(i, mediaPhotographe)
-    btnNext(i, mediaPhotographe)
-  })
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      i -= 1
-      if (i < 0) {
-        i = im.length - 1
-      }
-
-      displayNextPrevPicture(i, mediaPhotographe)
-      btnNext(i, mediaPhotographe)
-    }
-  })
-}
-
-function displayNextPrevPicture (i, mediaPhotographe) {
-  const regex = /_/gi
-
-  const im = mediaPhotographe.map((e) => e.image)
-  const v = mediaPhotographe.map((e) => e.video)
-  const title = mediaPhotographe.map((e) => e.title)
-  const alt = mediaPhotographe.map((e) => e.alt)
-
-  if (im[i]) {
-    lightboxImg.innerHTML = `
-        <img src="/assets/gallery/${im[i]}"  alt="${alt[i]}">
-        <h2>${title[i]}</h2>
-        `
-  }
-
-  if (im[i] === undefined) {
-    lightboxImg.innerHTML = `
-    <video controls>
-    <source aria-label="${v[i].replace('.mp4', ' ').replace(regex, ' ')}" src="/assets/gallery/${v[i]}"
-    type="video/mp4">
-    </video>
-  <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
-
-    `
-  }
-}
