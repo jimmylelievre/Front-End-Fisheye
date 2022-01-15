@@ -49,7 +49,7 @@ async function init () {
         <p tabindex='0' aria-label="Le slogan du photographe est ${dataPhotographe.tagline}" >${dataPhotographe.tagline}</p>
       </div>
       <button aria-label"button ouvrir le formulaire de contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <img tabindex='0' src="/assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
+      <img tabindex='0' src="assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
   displayLikePrice(dataPhotographe, mediaPhotographe)
   displayGallery(mediaPhotographe)
@@ -79,12 +79,12 @@ function createMediaCard (e, i) {
   let htmlElement = ''
   if (!('image' in e)) {
     htmlElement = `
-  <article tabindex='0'   class="card">
+  <article tabindex='0' class="card">
   <a>
     <i class="fas fa-play"></i>
     <video tabindex='0' id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
-      .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="/assets/gallery/${
+      .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="assets/gallery/${
       e.video
     }">
     </video>
@@ -102,7 +102,7 @@ function createMediaCard (e, i) {
     htmlElement = `
     <article tabindex='0' class="card">
     
-      <img tabindex='0' id="${i}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
+      <img tabindex='0' id="${i}" data-titre="${e.title}" class="image" src="assets/gallery/${e.image}" alt="${
         e.alt
       }">
     
@@ -161,7 +161,6 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         }
       })
       image.addEventListener('click', (e) => {
-        console.log(e.target)
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
 
@@ -273,10 +272,10 @@ function displayLikePrice (dataPhoto, mediaPhotographe) {
   // Injection du html avec les données du fichier json
   return (likeAndPrice.innerHTML = `
     <div class="likes-price-like">
-          <span class="counter-total">${totalLikes}</span>
+          <span aria-label="Le nombre total de j'aime est de ${totalLikes} " class="counter-total">${totalLikes}</span>
           <i class="fas fa-heart black"></i>
     </div>
-        <p>${dataPhoto.price}€ / jour</p>
+        <p aria-label="Le tarif du photographe est de ${dataPhoto.price}€ par jour" >${dataPhoto.price}€ / jour</p>
     
     `)
 }
@@ -342,7 +341,7 @@ function displayNextPrevPicture (i, mediaPhotographe) {
 
   if (im[i]) {
     lightboxImg.innerHTML = `
-        <img src="/assets/gallery/${im[i]}"  alt="${alt[i]}">
+        <img src="assets/gallery/${im[i]}"  alt="${alt[i]}">
         <h2>${title[i]}</h2>
         `
   }
@@ -350,7 +349,7 @@ function displayNextPrevPicture (i, mediaPhotographe) {
   if (im[i] === undefined) {
     lightboxImg.innerHTML = `
     <video controls>
-    <source aria-label="${v[i].replace('.mp4', ' ').replace(regex, ' ')}" src="/assets/gallery/${v[i]}"
+    <source aria-label="${v[i].replace('.mp4', ' ').replace(regex, ' ')}" src="assets/gallery/${v[i]}"
     type="video/mp4">
     </video>
   <h2>${v[i].replace('.mp4', ' ').replace(regex, ' ')}</h2>
