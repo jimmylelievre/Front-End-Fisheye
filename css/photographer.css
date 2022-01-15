@@ -93,6 +93,11 @@ li {
   background-color: #db8876;
   color: black;
 }
+.border:hover {
+  background-color: #db8876;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
 .filter-label:focus {
   background-color: #db8876;
   color: black;

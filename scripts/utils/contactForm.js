@@ -1,5 +1,13 @@
+const form = document.querySelector('form')
+const firstname = document.querySelector('input[name="firstname"]')
+const email = document.querySelector('input[name="email"]')
+const lastName = document.querySelector('input[name="lastname"]')
+
+const nameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
+const mailRegex = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i
 
 const modal = document.getElementById('contact_modal')
+
 function displayModal () {
   const main = document.querySelector('main')
   const header = document.querySelector('header')
@@ -24,16 +32,6 @@ document.addEventListener('keydown', (e) => {
     modal.style.display = 'none'
   }
 })
-
-const form = document.querySelector('form')
-const firstname = document.querySelector('input[name="firstname"]')
-const email = document.querySelector('input[name="email"]')
-const lastName = document.querySelector('input[name="lastname"]')
-
-const nameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
-const mailRegex = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i
-
-console.log(firstname)
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()

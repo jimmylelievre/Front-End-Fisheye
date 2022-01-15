@@ -24,7 +24,6 @@ const urlId = window.location.search
 const id = urlId.slice(1)
 
 // Récupération des données json
-
 const fetchPhotographePage = async () =>
   await fetch('data/photographers.json')
     .then((res) => res.json())
@@ -44,24 +43,31 @@ async function init () {
   const { dataPhotographe, mediaPhotographe } = await fetchPhotographePage()
 
   header.innerHTML = `
-      <div tabindex='1' >
-        <h1 tabindex='1' aria-label="Le nom du photographe est ${dataPhotographe.name}" class='titre'>${dataPhotographe.name}</h1>
-        <h2 tabindex='1' aria-label="La ville du photographe est ${dataPhotographe.city} en ${dataPhotographe.country}" >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
-        <p tabindex='1' aria-label="Le slogan du photographe est ${dataPhotographe.tagline}" >${dataPhotographe.tagline}</p>
+      <div tabindex='0' >
+        <h1 tabindex='0' aria-label="Le nom du photographe est ${dataPhotographe.name}" class='titre'>${dataPhotographe.name}</h1>
+        <h2 tabindex='0' aria-label="La ville du photographe est ${dataPhotographe.city} en ${dataPhotographe.country}" >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
+        <p tabindex='0' aria-label="Le slogan du photographe est ${dataPhotographe.tagline}" >${dataPhotographe.tagline}</p>
       </div>
       <button aria-label"button ouvrir le formulaire de contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <img tabindex='2' src="/assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
+      <img tabindex='0' src="/assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
   displayLikePrice(dataPhotographe, mediaPhotographe)
   displayGallery(mediaPhotographe)
 
   modalH2.innerText = `Contactez-moi ${dataPhotographe.name}`
 
+  // Filtre
   selectChoices.forEach((selectChoice) => {
     selectChoice.addEventListener('click', (e) => {
       const choice = e.currentTarget.dataset.orderBy
 
       displayGallery(mediaPhotographe, choice)
+    })
+    selectChoice.addEventListener('keydown', (e) => {
+      const choice = e.currentTarget.dataset.orderBy
+      if (e.key === 'Enter') {
+        displayGallery(mediaPhotographe, choice)
+      }
     })
   })
 }
@@ -73,10 +79,10 @@ function createMediaCard (e, i) {
   let htmlElement = ''
   if (!('image' in e)) {
     htmlElement = `
-  <article class="card">
+  <article tabindex='0'   class="card">
   <a>
     <i class="fas fa-play"></i>
-    <video id="${i}" data-titre="${e.video
+    <video tabindex='0' id="${i}" data-titre="${e.video
       .replace('.mp4', ' ')
       .replace(regex, ' ')}" class="video" aria-label="${e.alt}" src="/assets/gallery/${
       e.video
@@ -84,9 +90,9 @@ function createMediaCard (e, i) {
     </video>
   </a>
   <div class="card-header">
-    <h2>${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
+    <h2 tabindex='0' aria-label='Le titre de la vidéo est ${e.video.replace('.mp4', ' ').replace(regex, ' ')}' >${e.video.replace('.mp4', ' ').replace(regex, ' ')}</h2>
     <div class="card-header-like">
-      <span tabindex='0' aria-label="${e.likes} nombres de j'aime"   id='${e.likes}' class="counter">${e.likes}</span>
+      <span tabindex='0' aria-label="Le nombre de j'aime est ${e.likes}"   id='${e.likes}' class="counter">${e.likes}</span>
       <i id='${e.likes}' class="fas fa-heart likes"></i>
     </div>
   </div>
@@ -94,18 +100,18 @@ function createMediaCard (e, i) {
 `
   } else {
     htmlElement = `
-    <article class="card">
+    <article tabindex='0' class="card">
     
-    <img id="${i}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
-      e.alt
-    }">
+      <img tabindex='0' id="${i}" data-titre="${e.title}" class="image" src="/assets/gallery/${e.image}" alt="${
+        e.alt
+      }">
     
-    <div class="card-header">
-    <h2>${e.title}</h2>
-    <div class="card-header-like">
-      <span tabindex='0' aria-label="${e.likes} nombres de j'aime" id='${e.likes}' class="counter">${e.likes}</span>
-      <i id='${e.likes}' class="fas fa-heart likes"></i>
-    </div>
+    <div tabindex='0' class="card-header">
+      <h2 tabindex='0' aria-label='Le titre de la photo est ${e.title}'>${e.title}</h2>
+      <div class="card-header-like">
+        <span tabindex='0' aria-label="Le nombre de j'aime est ${e.likes}" id='${e.likes}' class="counter">${e.likes}</span>
+        <i id='${e.likes}' class="fas fa-heart likes"></i>
+      </div>
     </div>
     </article>
     `
@@ -155,11 +161,12 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         }
       })
       image.addEventListener('click', (e) => {
+        console.log(e.target)
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
 
         lightboxImg.innerHTML = `
-          <img src="${e.target.attributes[3].nodeValue}" alt="${e.target.alt}">
+          <img src="${e.target.currentSrc}" alt="${e.target.alt}">
           <h2>${e.target.dataset.titre}</h2>
           `
 
@@ -191,7 +198,6 @@ function displayGallery (mediaPhotographe, orderBy = 'likes') {
         }
       })
       video.addEventListener('click', (e) => {
-        console.log(e)
         main.setAttribute('aria-hidden', 'true')
         header.setAttribute('aria-hidden', 'true')
         lightboxImg.innerHTML = `
@@ -253,7 +259,7 @@ function onLike () {
   })
 }
 
-// Affichage de l'encart de la totalité des likes
+// Affichage de l'encart de la totalité des likes et du prix par jour du photographe
 function displayLikePrice (dataPhoto, mediaPhotographe) {
   const likes = []
   // Récupearation des likes
@@ -368,16 +374,20 @@ filterChoice.addEventListener('click', (e) => {
   chevron.classList.remove('fa-chevron-up')
   chevron.classList.add('fa-chevron-down')
 })
+filterChoice.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    filterChoice.style.display = 'none'
+    filterButton.style.display = 'block'
+    filterButton.innerText = e.target.innerText.trim()
+    chevron.classList.remove('fa-chevron-up')
+    chevron.classList.add('fa-chevron-down')
+  }
+})
 filterButton.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     filterChoice.style.display = 'block'
     filterButton.style.display = 'none'
     chevron.classList.remove('fa-chevron-down')
     chevron.classList.add('fa-chevron-up')
-  }
-})
-filterChoice.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowDown') {
-    filterChoice.setAttribute('aria-activedescendant', 'filter-date')
   }
 })

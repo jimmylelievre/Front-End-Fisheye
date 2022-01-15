@@ -19,9 +19,9 @@
     <main id="main">
       <div class="photographe-header"></div>
      
-
+    <!-- Filtre -->
       <aside  class="filter-container">
-        <label  class="filter" for="filter">Trier par</label>
+        <label tabindex='0' class="filter" for="filter">Trier par</label>
 
         <label  tabindex="0" class="filter-label" role="button">Popularité</label>
         <i class="fas fa-chevron-down chevron"></i>
@@ -42,7 +42,7 @@
             aria-labelledby="filter-label"
           >
             <li
-              class="filter-listbox-option border-line"
+              class="filter-listbox-option border"
               role="option"
               id="filter-rate"
               aria-selected="true"
@@ -54,7 +54,7 @@
               Popularité
             </li>
             <li
-              class="filter-listbox-option border-line"
+              class="filter-listbox-option"
               role="option"
               id="filter-date"
               data-listbox-value="date"
@@ -80,7 +80,7 @@
       </aside>
 
    
-
+    <!-- Gallery-->
       <section id="media" class="media"></section>
       <div class="likes-price"></div>
     </main>
@@ -93,14 +93,14 @@
           <img src="assets/icons/close.svg" aria-label="Fermer" onclick="closeModal()" />
         </header>
         <form>
-          <div>
-            <label for="firstname">Prénom</label>
+          <div >
+            <label tabindex="0" for="firstname">Prénom</label>
             <input type="text" data-error="Le nom doit contenir au minimum 2 caractères" name="firstname" minlength="2" title="Le prénom doit contenir au minimum 2 caractères" required="" />
-            <label for="lastname">Nom</label>
+            <label tabindex="0" for="lastname">Nom</label>
             <input type="text" name="lastname" minlength="2" title="Le nom doit contenir au minimum 2 caractères" required="" />
-            <label for="email">Email</label>
+            <label tabindex="0" for="email">Email</label>
             <input type="text" name="email" data-error="L'adresse e-mail doit être valide" title="L'adresse e-mail doit être valide" required=""/>
-            <label for="message">Votre message</label>
+            <label tabindex="0" for="message">Votre message</label>
             <textarea name="message" id="message" type="text" minlength="5" title="Le message doit contenir au minimum 5 caractères" required=""></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
