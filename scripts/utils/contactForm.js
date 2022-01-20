@@ -78,7 +78,6 @@ function validEmail (e) {
 
     return false
   } else {
-    console.log('ok')
     return true
   }
 }
@@ -90,7 +89,6 @@ function validFirstname (e) {
 
     return false
   } else {
-    console.log('ok')
     return true
   }
 }
@@ -101,7 +99,6 @@ function validLastName (e) {
 
     return false
   } else {
-    console.log('ok')
     return true
   }
 }

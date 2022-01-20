@@ -77,7 +77,6 @@ li {
 .filter-label {
   position: absolute;
   left: 174px;
-
   margin-left: 25px;
   border-radius: 5px;
   background-color: #901c1c;
@@ -117,13 +116,16 @@ li {
   left: 330px;
   margin-top: 20px;
   z-index: 5;
+  cursor: pointer;
 }
+
 .fa-chevron-up {
   color: white;
   position: absolute;
   left: 330px;
   margin-top: 20px;
   z-index: 5;
+  cursor: pointer;
 }
 .filter-listbox-option {
   list-style: none;
@@ -279,11 +281,11 @@ li {
   margin-top: 20px;
   line-height: 23px;
 }
-.contact_button:hover {
+.hover:hover {
   background-color: #db8876;
   color: black;
 }
-.contact_button:focus {
+.hover:focus {
   background-color: #db8876;
   color: black;
 }

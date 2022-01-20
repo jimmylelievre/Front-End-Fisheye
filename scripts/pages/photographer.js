@@ -8,6 +8,7 @@ const filterButton = document.querySelector('.filter-label')
 const filterChoice = document.querySelector('.filter-wrapper')
 const selectChoices = document.querySelectorAll('.filter-listbox-option')
 const chevron = document.querySelector('.chevron')
+const chevronDown = document.querySelector('.fa-chevron-down')
 const lightbox = document.querySelector('.lightbox')
 const lightboxClose = document.querySelector('.fa-times')
 const lightboxImg = document.querySelector('.lightbox-img')
@@ -48,7 +49,7 @@ async function init () {
         <h2 tabindex='0' aria-label="La ville du photographe est ${dataPhotographe.city} en ${dataPhotographe.country}" >${dataPhotographe.city}, ${dataPhotographe.country}</h2>
         <p tabindex='0' aria-label="Le slogan du photographe est ${dataPhotographe.tagline}" >${dataPhotographe.tagline}</p>
       </div>
-      <button aria-label"button ouvrir le formulaire de contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button aria-label="button ouvrir le formulaire de contact" class="contact_button hover" onclick="displayModal()">Contactez-moi</button>
       <img tabindex='0' src="assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
   displayLikePrice(dataPhotographe, mediaPhotographe)
@@ -389,4 +390,10 @@ filterButton.addEventListener('keydown', (e) => {
     chevron.classList.remove('fa-chevron-down')
     chevron.classList.add('fa-chevron-up')
   }
+})
+chevronDown.addEventListener('click', () => {
+  filterChoice.style.display = 'block'
+  filterButton.style.display = 'none'
+  chevron.classList.remove('fa-chevron-down')
+  chevron.classList.add('fa-chevron-up')
 })
