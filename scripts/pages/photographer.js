@@ -1,3 +1,6 @@
+/* global fetch */
+/* eslint no-undef: "error" */
+
 // Dom
 
 const header = document.querySelector('.photographe-header')
@@ -26,6 +29,7 @@ const id = urlId.slice(1)
 
 // Récupération des données json
 const fetchPhotographePage = async () =>
+
   await fetch('data/photographers.json')
     .then((res) => res.json())
     .then((data) => {

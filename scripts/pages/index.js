@@ -1,4 +1,5 @@
-
+/* global fetch,photographerFactory */
+/* eslint no-undef: "error" */
 let tab = []
 
 // Récupération des données json
@@ -22,6 +23,7 @@ async function displayData (photographers) {
   const photographersSection = document.querySelector('.photographer_section')
 
   photographers.forEach((photographer) => {
+    // eslint-disable-next-line no-unused-vars
     const photographerModel = photographerFactory(photographer)
     const userCardDOM = photographerModel.getUserCardDOM()
     photographersSection.appendChild(userCardDOM)

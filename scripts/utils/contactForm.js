@@ -1,3 +1,4 @@
+
 const form = document.querySelector('form')
 const firstname = document.querySelector('input[name="firstname"]')
 const email = document.querySelector('input[name="email"]')
@@ -8,6 +9,7 @@ const mailRegex = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i
 
 const modal = document.getElementById('contact_modal')
 
+// eslint-disable-next-line no-unused-vars
 function displayModal () {
   const main = document.querySelector('main')
   const header = document.querySelector('header')
@@ -16,7 +18,7 @@ function displayModal () {
   main.setAttribute('aria-hidden', 'true')
   header.setAttribute('aria-hidden', 'true')
 }
-
+// eslint-disable-next-line no-unused-vars
 function closeModal () {
   const main = document.querySelector('main')
   const modal = document.getElementById('contact_modal')
