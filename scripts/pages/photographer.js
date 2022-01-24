@@ -84,7 +84,7 @@ async function init () {
 }
 init()
 
-// Création de cartes da la gallery
+// Création des cartes de la gallery
 function createMediaCard (e, i) {
   const regex = /_/gi
   let htmlElement = ''
