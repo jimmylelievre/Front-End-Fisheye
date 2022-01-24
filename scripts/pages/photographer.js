@@ -44,9 +44,11 @@ const fetchPhotographePage = async () =>
       }
     })
 
+// Permet l'initialisation de la page
 async function init () {
   const { dataPhotographe, mediaPhotographe } = await fetchPhotographePage()
 
+  // Création de la présentation du photographe
   header.innerHTML = `
       <div tabindex='0' >
         <h1 tabindex='0' aria-label="Le nom du photographe est ${dataPhotographe.name}" class='titre'>${dataPhotographe.name}</h1>
@@ -56,9 +58,13 @@ async function init () {
       <button aria-label="button ouvrir le formulaire de contact" class="contact_button hover" onclick="displayModal()">Contactez-moi</button>
       <img tabindex='0' src="assets/photographers/${dataPhotographe.portrait}" alt="${dataPhotographe.alt}">
 `
+  // Création de l'encart en bas a droite du total des likes et tarif
   displayLikePrice(dataPhotographe, mediaPhotographe)
+
+  // Création de la gallery
   displayGallery(mediaPhotographe)
 
+  // Permet d'inserer le nom du photographe dans le titre de la modal contact
   modalH2.innerText = `Contactez-moi ${dataPhotographe.name}`
 
   // Filtre
